@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "HiEmsProxy": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
