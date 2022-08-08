@@ -1,0 +1,12 @@
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\bin\Debug\net6.0\Wsk.Core.QuartzNet.deps.json
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\bin\Debug\net6.0\Wsk.Core.QuartzNet.dll
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\bin\Debug\net6.0\Wsk.Core.QuartzNet.pdb
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\obj\Debug\net6.0\Wsk.Core.QuartzNet.csproj.AssemblyReference.cache
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\obj\Debug\net6.0\Wsk.Core.QuartzNet.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\obj\Debug\net6.0\Wsk.Core.QuartzNet.AssemblyInfoInputs.cache
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\obj\Debug\net6.0\Wsk.Core.QuartzNet.AssemblyInfo.cs
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\obj\Debug\net6.0\Wsk.Core.QuartzNet.csproj.CoreCompileInputs.cache
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\obj\Debug\net6.0\Wsk.Core.QuartzNet.dll
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\obj\Debug\net6.0\refint\Wsk.Core.QuartzNet.dll
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\obj\Debug\net6.0\Wsk.Core.QuartzNet.pdb
+D:\Git\HiEmsProxy\Wsk.Core.QuartzNet\obj\Debug\net6.0\ref\Wsk.Core.QuartzNet.dll

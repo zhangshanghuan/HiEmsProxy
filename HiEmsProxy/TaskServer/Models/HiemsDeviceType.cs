@@ -2,16 +2,15 @@ using System;
 using System.Collections.Generic;
 using SqlSugar;
 
-namespace HiEmsProxy.TaskServer.Models
+
+namespace HiEMS.Model.Models
 {
     /// <summary>
-    /// ，数据实体对象
-    ///
-    /// @author admin
-    /// @date 2022-07-18
+    /// 设备类型数据实体对象
+    /// @author jepen
     /// </summary>
-    [SugarTable("hiems_device_data")]
-    public class HiemsDeviceData
+    [SugarTable("hiems_device_type")]
+    public class HiemsDeviceType
     {
         /// <summary>
         /// 描述 :ID 
@@ -21,34 +20,48 @@ namespace HiEmsProxy.TaskServer.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// 描述 :路由 
+        /// 描述 :名称 
         /// 空值 : true  
         /// </summary>
-        public string Router { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// 描述 :值 
+        /// 描述 :描述 
         /// 空值 : true  
         /// </summary>
-        public string Value { get; set; }
+        public string Describe { get; set; }
 
         /// <summary>
-        /// 描述 :结果 
+        /// 描述 :状态 
         /// 空值 : true  
         /// </summary>
-        public string Result { get; set; }
+        public string Status { get; set; }
 
         /// <summary>
-        /// 描述 :R/W 
+        /// 描述 :编码 
         /// 空值 : true  
         /// </summary>
-        public string RwType { get; set; }
+        public string Code { get; set; }
+
+        /// <summary>
+        /// 描述 :协议类型 
+        /// 空值 : true  
+        /// </summary>
+        public string Protocol { get; set; }
+
+        /// <summary>
+        /// 描述 :设备类型 
+        /// 空值 : true  
+        /// </summary>
+        public string Type { get; set; }
 
         /// <summary>
         /// 描述 :附加信息 
         /// 空值 : true  
         /// </summary>
         public string Attach { get; set; }
+
+
 
     }
 }

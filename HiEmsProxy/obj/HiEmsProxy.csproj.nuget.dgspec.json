@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\share\\测试代码\\HiEmsProxy\\HiEmsProxy\\HiEmsProxy.csproj": {}
+    "D:\\Git\\HiEmsProxy\\HiEmsProxy\\HiEmsProxy.csproj": {}
   },
   "projects": {
-    "D:\\share\\测试代码\\HiEmsProxy\\HiEmsProxy\\HiEmsProxy.csproj": {
+    "D:\\Git\\HiEmsProxy\\HiEmsProxy\\HiEmsProxy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\share\\测试代码\\HiEmsProxy\\HiEmsProxy\\HiEmsProxy.csproj",
+        "projectUniqueName": "D:\\Git\\HiEmsProxy\\HiEmsProxy\\HiEmsProxy.csproj",
         "projectName": "HiEmsProxy",
-        "projectPath": "D:\\share\\测试代码\\HiEmsProxy\\HiEmsProxy\\HiEmsProxy.csproj",
+        "projectPath": "D:\\Git\\HiEmsProxy\\HiEmsProxy\\HiEmsProxy.csproj",
         "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
-        "outputPath": "D:\\share\\测试代码\\HiEmsProxy\\HiEmsProxy\\obj\\",
+        "outputPath": "D:\\Git\\HiEmsProxy\\HiEmsProxy\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj": {
-                "projectPath": "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj"
+              "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj": {
+                "projectPath": "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj"
               },
-              "D:\\share\\测试代码\\HiEmsProxy\\SerialLib\\SerialLib.csproj": {
-                "projectPath": "D:\\share\\测试代码\\HiEmsProxy\\SerialLib\\SerialLib.csproj"
+              "D:\\Git\\HiEmsProxy\\SerialLib\\SerialLib.csproj": {
+                "projectPath": "D:\\Git\\HiEmsProxy\\SerialLib\\SerialLib.csproj"
+              },
+              "D:\\Git\\HiEmsProxy\\Wsk.Core.QuartzNet\\Wsk.Core.QuartzNet.csproj": {
+                "projectPath": "D:\\Git\\HiEmsProxy\\Wsk.Core.QuartzNet\\Wsk.Core.QuartzNet.csproj"
               }
             }
           }
@@ -51,10 +54,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "AMWD.Modbus.Common": {
-              "target": "Package",
-              "version": "[1.2.0, )"
-            },
             "CSRedisCore": {
               "target": "Package",
               "version": "[3.8.3, )"
@@ -62,6 +61,14 @@
             "DynamicExpresso.Core": {
               "target": "Package",
               "version": "[2.13.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.SignalR.Client": {
               "target": "Package",
@@ -74,6 +81,10 @@
             "Microsoft.Extensions.Hosting.WindowsServices": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[5.0.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -111,14 +122,14 @@
         }
       }
     },
-    "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj": {
+    "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
+        "projectUniqueName": "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
         "projectName": "ModbusLibNew",
-        "projectPath": "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
+        "projectPath": "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
         "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
-        "outputPath": "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\obj\\",
+        "outputPath": "D:\\Git\\HiEmsProxy\\ModbusLibNew\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -183,14 +194,14 @@
         }
       }
     },
-    "D:\\share\\测试代码\\HiEmsProxy\\SerialLib\\SerialLib.csproj": {
+    "D:\\Git\\HiEmsProxy\\SerialLib\\SerialLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\share\\测试代码\\HiEmsProxy\\SerialLib\\SerialLib.csproj",
+        "projectUniqueName": "D:\\Git\\HiEmsProxy\\SerialLib\\SerialLib.csproj",
         "projectName": "SerialLib",
-        "projectPath": "D:\\share\\测试代码\\HiEmsProxy\\SerialLib\\SerialLib.csproj",
+        "projectPath": "D:\\Git\\HiEmsProxy\\SerialLib\\SerialLib.csproj",
         "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
-        "outputPath": "D:\\share\\测试代码\\HiEmsProxy\\SerialLib\\obj\\",
+        "outputPath": "D:\\Git\\HiEmsProxy\\SerialLib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -226,6 +237,78 @@
             "System.IO.Ports": {
               "target": "Package",
               "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Git\\HiEmsProxy\\Wsk.Core.QuartzNet\\Wsk.Core.QuartzNet.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Git\\HiEmsProxy\\Wsk.Core.QuartzNet\\Wsk.Core.QuartzNet.csproj",
+        "projectName": "Wsk.Core.QuartzNet",
+        "projectPath": "D:\\Git\\HiEmsProxy\\Wsk.Core.QuartzNet\\Wsk.Core.QuartzNet.csproj",
+        "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
+        "outputPath": "D:\\Git\\HiEmsProxy\\Wsk.Core.QuartzNet\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "d:\\Users\\zhangsh\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.4.0, )"
             }
           },
           "imports": [

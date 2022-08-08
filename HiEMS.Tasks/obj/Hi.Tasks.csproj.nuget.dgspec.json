@@ -1,0 +1,467 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Tasks\\Hi.Tasks.csproj": {}
+  },
+  "projects": {
+    "D:\\Dev\\HiEMS\\HiEmsCore\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Dev\\HiEMS\\HiEmsCore\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\laijp\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\HiEMS\\HiEmsCore\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "d:\\Users\\laijp\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AspectCore.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Hosting": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Common\\ZR.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Common\\ZR.Common.csproj",
+        "projectName": "ZR.Common",
+        "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Common\\ZR.Common.csproj",
+        "packagesPath": "C:\\Users\\laijp\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "d:\\Users\\laijp\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Dev\\HiEMS\\HiEmsCore\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\Infrastructure\\Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Aliyun.OSS.SDK.NetCore": {
+              "target": "Package",
+              "version": "[2.13.0, )"
+            },
+            "CSRedisCore": {
+              "target": "Package",
+              "version": "[3.6.9, )"
+            },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "MQTTnet": {
+              "target": "Package",
+              "version": "[4.0.1.184, )"
+            },
+            "MQTTnet.Extensions.ManagedClient": {
+              "target": "Package",
+              "version": "[4.0.1.184, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Model\\ZR.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Model\\ZR.Model.csproj",
+        "projectName": "ZR.Model",
+        "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Model\\ZR.Model.csproj",
+        "packagesPath": "C:\\Users\\laijp\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "d:\\Users\\laijp\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "SqlSugarCoreNoDrive": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Repository\\ZR.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Repository\\ZR.Repository.csproj",
+        "projectName": "ZR.Repository",
+        "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Repository\\ZR.Repository.csproj",
+        "packagesPath": "C:\\Users\\laijp\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "d:\\Users\\laijp\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Dev\\HiEMS\\HiEmsCore\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\Infrastructure\\Infrastructure.csproj"
+              },
+              "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Model\\ZR.Model.csproj": {
+                "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Model\\ZR.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.29, )"
+            },
+            "NETCore.Encrypt": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "SqlSugar.IOC": {
+              "target": "Package",
+              "version": "[1.8.0, )"
+            },
+            "SqlSugarCoreNoDrive": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "TDengine.Connector": {
+              "target": "Package",
+              "version": "[1.0.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Service\\ZR.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Service\\ZR.Service.csproj",
+        "projectName": "ZR.Service",
+        "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Service\\ZR.Service.csproj",
+        "packagesPath": "C:\\Users\\laijp\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "d:\\Users\\laijp\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Common\\ZR.Common.csproj": {
+                "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Common\\ZR.Common.csproj"
+              },
+              "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Repository\\ZR.Repository.csproj": {
+                "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Repository\\ZR.Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Tasks\\Hi.Tasks.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Tasks\\Hi.Tasks.csproj",
+        "projectName": "Hi.Tasks",
+        "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Tasks\\Hi.Tasks.csproj",
+        "packagesPath": "C:\\Users\\laijp\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Tasks\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "d:\\Users\\laijp\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Model\\ZR.Model.csproj": {
+                "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Model\\ZR.Model.csproj"
+              },
+              "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Service\\ZR.Service.csproj": {
+                "projectPath": "D:\\Dev\\HiEMS\\HiEmsCore\\ZR.Service\\ZR.Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[5.0.0-rc2, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
+            "Quartz.Serialization.Json": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

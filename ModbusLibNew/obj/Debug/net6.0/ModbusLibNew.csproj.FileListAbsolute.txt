@@ -46,3 +46,15 @@ D:\share\测试代码\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ModbusLibNew.dll
 D:\share\测试代码\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\refint\ModbusLibNew.dll
 D:\share\测试代码\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ModbusLibNew.pdb
 D:\share\测试代码\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ref\ModbusLibNew.dll
+D:\Git\HiEmsProxy\ModbusLibNew\bin\Debug\net6.0\ModbusLibNew.deps.json
+D:\Git\HiEmsProxy\ModbusLibNew\bin\Debug\net6.0\ModbusLibNew.dll
+D:\Git\HiEmsProxy\ModbusLibNew\bin\Debug\net6.0\ModbusLibNew.pdb
+D:\Git\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ModbusLibNew.csproj.AssemblyReference.cache
+D:\Git\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ModbusLibNew.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ModbusLibNew.AssemblyInfoInputs.cache
+D:\Git\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ModbusLibNew.AssemblyInfo.cs
+D:\Git\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ModbusLibNew.csproj.CoreCompileInputs.cache
+D:\Git\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ModbusLibNew.dll
+D:\Git\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\refint\ModbusLibNew.dll
+D:\Git\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ModbusLibNew.pdb
+D:\Git\HiEmsProxy\ModbusLibNew\obj\Debug\net6.0\ref\ModbusLibNew.dll

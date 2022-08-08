@@ -11,8 +11,5 @@ namespace HiEmsProxy.TaskServer.Model
         public string Result { get; set; }
         public string Value { get; set; }
         public byte[] ValueByteArray { get; set; }
-        public string Router { get; set; }
-        public string RW { get; set; }
-        public string attach { get; set; }
     }
 }

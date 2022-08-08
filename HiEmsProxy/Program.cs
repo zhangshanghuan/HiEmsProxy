@@ -1,3 +1,4 @@
+using HiEMS.WebApi.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -5,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Wsk.Core.QuartzNet;
 
 namespace HiEmsProxy
 {
@@ -12,8 +14,9 @@ namespace HiEmsProxy
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();       
         }
+     
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             var host = Host.CreateDefaultBuilder(args);
@@ -24,9 +27,10 @@ namespace HiEmsProxy
             }
             return host.ConfigureServices((hostContext, services) =>
             {          
-                services.AddHostedService<Worker>();
+                 services.AddHostedService<Worker>();
+                //添加一个定时任务
+                services.AddTaskSchedulers();
             });
-        
         }
     }
 }

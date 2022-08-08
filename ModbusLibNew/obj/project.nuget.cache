@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wVcACu65+N7kk/6TFi0TL5HJuNYbSrbM3JA/LW7op/vr21YlG3ZlF6Ikgm++4hVVLLyXxV9sIHTxzNBeuUoNtw==",
+  "dgSpecHash": "s1kN5H9NbYOqlbaewdBXlG41mBhcUdN36vsyPdnr46XEx847looFQFmhKWrM8ZJdqU6/Kvaj9QFefgqfADz8JA==",
   "success": true,
-  "projectFilePath": "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
+  "projectFilePath": "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zhangsh\\.nuget\\packages\\dynamicexpresso.core\\2.13.0\\dynamicexpresso.core.2.13.0.nupkg.sha512",
     "C:\\Users\\zhangsh\\.nuget\\packages\\fluentmodbus\\3.2.1\\fluentmodbus.3.2.1.nupkg.sha512",

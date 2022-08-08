@@ -118,6 +118,7 @@ namespace ModbusLibNew
                                 startAddress++;
                             }
                             break;
+                        default: return false;
                     }
                     _DataByteArray = ByteData.ToArray();
                     return true;
@@ -140,7 +141,7 @@ namespace ModbusLibNew
                 //判断是否写线圈
                 if (Is)
                 {
-                    string[] strarr = data.Split(' ');
+                    string[] strarr = data.Split(',');
                     coilDatauffer = new bool[strarr.Length];
                     //转化为bool数组
                     for (int i = 0; i < strarr.Length; i++)
@@ -158,7 +159,7 @@ namespace ModbusLibNew
                 else
                 {
                     //转化ushort数组
-                    string[] strarr = data.Split(' ');
+                    string[] strarr = data.Split(',');
                     registerBuffer = new ushort[strarr.Length];
                     for (int i = 0; i < strarr.Length; i++)
                     {

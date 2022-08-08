@@ -13,7 +13,7 @@ namespace HiEmsProxy.TaskServer.Model
         public static List<SerialExecute> _ListSerialLib = new List<SerialExecute>();
 
         //定义一个串口通讯集合     
-        public static SerialExecute CreatSerial(string COM, int BaudRate, int DataBits, Parity Parity, StopBits StopBits)
+        public static SerialExecute CreatSerial(string COM, int BaudRate, int DataBits, Parity Parity, StopBits StopBits,int ID)
         {          
                 try
                 {
@@ -38,7 +38,7 @@ namespace HiEmsProxy.TaskServer.Model
                         Parity = Parity,
                         StopBits = StopBits
                     };            
-                    SerialExecute _SerialExcute = new SerialExecute(_SerialPort);
+                    SerialExecute _SerialExcute = new SerialExecute(_SerialPort, ID);
                     _ListSerialLib.Add(_SerialExcute);
                     return _SerialExcute;
                 }
@@ -51,7 +51,7 @@ namespace HiEmsProxy.TaskServer.Model
         //定义一个CAN通讯集合
 
         //创建一个modbus tcp 执行器对象     
-        public static ModbusTcpExecute CreatModbusTcp(string Ip, int port)
+        public static ModbusTcpExecute CreatModbusTcp(string Ip, int port,int ID)
         {
           
                 try
@@ -63,7 +63,7 @@ namespace HiEmsProxy.TaskServer.Model
                             return item;                           
                         }                                       
                     }
-                    ModbusTcpExecute _ModbusTcpExcute = new ModbusTcpExecute(Ip, port);
+                    ModbusTcpExecute _ModbusTcpExcute = new ModbusTcpExecute(Ip, port,ID);
                     _ListTcpModbusLib.Add(_ModbusTcpExcute);
                     return _ModbusTcpExcute;
                 }
@@ -74,7 +74,7 @@ namespace HiEmsProxy.TaskServer.Model
         }
 
         //创建一个modbus RTU 执行器 对象       
-        public static ModbusRtuExecute CreatModbusRtu(string COM, int BaudRate, int DataBits, Parity Parity, StopBits StopBits)
+        public static ModbusRtuExecute CreatModbusRtu(string COM, int BaudRate, int DataBits, Parity Parity, StopBits StopBits,int ID)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace HiEmsProxy.TaskServer.Model
                     Parity = Parity,
                     StopBits = StopBits
                 };
-                ModbusRtuExecute _ModbusRtuExcute = new ModbusRtuExecute(_SerialPort);
+                ModbusRtuExecute _ModbusRtuExcute = new ModbusRtuExecute(_SerialPort, ID);
                 _ListRtuModbusLib.Add(_ModbusRtuExcute);
                 return _ModbusRtuExcute;
             }

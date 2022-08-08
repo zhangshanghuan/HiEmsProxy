@@ -1,7 +1,11 @@
 ﻿
+using HiEmsProxy.TaskServer.Model;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Threading;
 
 namespace HiEmsProxy.TaskServer.Base
 { 
@@ -31,32 +35,41 @@ namespace HiEmsProxy.TaskServer.Base
             }
         }
     }
+
+
     public class SignalClien
     {
+        AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
+        IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
+        BaseConfig _BaseConfig = null;
         public SignalClien()
         {
-            Connect();
+            DelegateLib.SignalDevConDelegate += DevConnectDelegate;
+            _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();
         }
         public HubConnectionBuilder _connection;
         private HubConnection _HubConnection;
-        public static string URL="http://172.18.8.178:8889/dataHub";         
+        public static string URL="http://172.18.8.178:8888/dataHub";         
  
         public async Task<bool>   Connect()
         {
-             _connection = new HubConnectionBuilder();
+            URL = _BaseConfig!=null? _BaseConfig.SignalRUrl: URL;
+             _connection = new HubConnectionBuilder();           
             _connection.WithUrl(URL);
             //自定义重连规则实现           
-            _connection.WithAutomaticReconnect(new RetryPolicy());
-            _HubConnection =  _connection.Build();
+            _connection.WithAutomaticReconnect(new RetryPolicy());           
+             _HubConnection =  _connection.Build();           
             _HubConnection.On<string>("GetMessage", (msg) => GetMessage(msg));
-            _HubConnection.On<string>("Welcome", (msg) => WelcomeRecive(msg));
+            _HubConnection.On<string>("GetDeviceProp", (msg) => GetDeviceProp(msg));
+            _HubConnection.On<string>("GetRemote", (msg) => GetRemote(msg));
+            _HubConnection.On<string>("GetAdmin", (msg) => GetAdmin(msg));
             try
             {
-                _HubConnection.Closed += _HubConnection_Closed;               
+                _HubConnection.Closed += _HubConnection_Closed;
+                //_HubConnection.Reconnected += _HubConnection_Reconnected;
                 await _HubConnection.StartAsync();
                 if (_HubConnection.State==HubConnectionState.Connected)
                 {
-                    Console.WriteLine("SignalClient Connect Success！！！");
                     return true;
                 }
             }
@@ -67,12 +80,15 @@ namespace HiEmsProxy.TaskServer.Base
             return false;
         }
 
-        //重新连接
-        private System.Threading.Tasks.Task _HubConnection_Closed(Exception arg)
-        {
-            Console.WriteLine("SignalClient DisConnect !!!");
-            return null;
+        //初始化信息交互
+        public async Task<bool> InitMain()
+        {             
+            _AutoResetEvent.Reset();
+            await SetInit();
+           return _AutoResetEvent.WaitOne(10000);
         }
+
+        //断开连接
         public async void Disconnect()
         {          
             try
@@ -87,15 +103,97 @@ namespace HiEmsProxy.TaskServer.Base
             }
 
         }
-        public  void GetMessage(string  msg)
+
+        //连接状态
+        public bool ConnectState()
         {
-            Console.WriteLine("GetMessage HUB:" + msg);
-            
+            if (_HubConnection!=null)
+            {
+                if (_HubConnection.State== HubConnectionState.Connected)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
-        public void WelcomeRecive(string msg)
+
+        #region 接收
+        public void GetMessage(string  msg)
         {
-            Console.WriteLine("Welcome HUB:" + msg);
-            _HubConnection.InvokeAsync("SendMessage", _HubConnection.ConnectionId, "123");
+            Console.WriteLine("From {GetMessage} server:" + msg);
+            _AutoResetEvent.Set();
+        }
+        public void GetDeviceProp(string msg)
+        {
+            Console.WriteLine("From  {GetDeviceProp}  server:" + msg);         
+            if (DelegateLib.SignalDevicePropDelegate != null)
+            {
+                DelegateLib.SignalDevicePropDelegate(msg);
+            }
+        }
+        public void GetRemote(string msg)
+        {
+            Console.WriteLine("From {GetRemote} server:" + msg);
+            if (DelegateLib.SignalRemoteDelegate != null)
+            {
+                DelegateLib.SignalRemoteDelegate(msg);
+            }
+        }
+        public void GetAdmin(string msg)
+        {
+            Console.WriteLine("From {GetAdmin} server:" + msg);
+        }
+        #endregion
+
+        #region 发送
+        public async Task SetInit()
+        {
+            DataCollectUser _DataCollectUser = new DataCollectUser()
+            {
+                ConnnectionId = _HubConnection.ConnectionId,
+                Name = _BaseConfig.Name,
+                LoginTime = DateTime.Now,
+                LocalIP = _BaseConfig.LocalIp,
+                LocalId =Convert.ToInt16(_BaseConfig.LocalId),   //采集执行ID
+                Location = _BaseConfig.Location
+            };
+            string data = JsonConvert.SerializeObject(_DataCollectUser);
+            Console.WriteLine("SignalClient Connect Success！！！");
+            await SendMsgToServer("SetInit", _HubConnection.ConnectionId, data);
+        }
+
+        public async Task<bool> SetDeviceData(string data)
+        {
+            if (_HubConnection!=null)
+            {
+                return SendMsgToServer("SetDeviceData", _HubConnection.ConnectionId, data).Wait(5000);
+            }
+            return false;
+        }
+        private async  Task SendMsgToServer(string MethodName,string ConnectionId,string data)
+        {
+            Console.WriteLine("Send server:" + data);
+            await _HubConnection.InvokeAsync(MethodName, _HubConnection.ConnectionId, data);
+        }
+        #endregion
+
+        #region 设备连接状态
+        private void DevConnectDelegate(string StateStr)
+        {
+          
+        }
+        #endregion
+
+        //断开连接事件
+        private System.Threading.Tasks.Task _HubConnection_Closed(Exception arg)
+        {
+            Console.WriteLine("SignalClient DisConnect !!!");
+            return null;
+        }
+        //重新连接
+        private async Task _HubConnection_Reconnected(string arg)
+        {
+            await SetInit();
         }
     }
 }

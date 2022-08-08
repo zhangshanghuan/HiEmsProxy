@@ -11,11 +11,14 @@ using System.Threading.Tasks;
 using HiEmsProxy.TaskServer.Base;
 using HiEmsProxy.TaskServer.Model;
 using HiEmsProxy.TaskServer.Models;
+using HiEMS.Model.Models;
+using HiEMS.Model.Dto;
 
 namespace HiEmsProxy.TaskServer.Actuator
 {
     public class SerialExecute: ActInterface
     {
+        common _common = new common();
         public ConcurrentDictionary<string, DateTime> _list = new();
         public SerialLib _SerialLib=new SerialLib();
         readonly Modbushelp _modbushelp = new();
@@ -24,13 +27,21 @@ namespace HiEmsProxy.TaskServer.Actuator
         //采集集合
         public List<Tasklib> _TaskList { get; set; } = new List<Tasklib>();
         public BlockingCollection<Tasklib> _BlockingCollection { get; set; } = new BlockingCollection<Tasklib>(1000);
-
-        public SerialExecute(SerialPort _SerialPort)
+        public int ID;
+        public SerialExecute(SerialPort _SerialPort, int iD)
         {
-            bool res=  _SerialLib.Init(_SerialPort);
-            if (res) Main();
-        }       
-        public void Main()       
+            ID = iD;
+            bool res = _SerialLib.Init(_SerialPort);
+            if (res)
+            {
+                Main();
+            }
+            else
+            {
+                _common.DeviceConState(ID, "连接失败");
+            }
+        }
+        public void Main()
         {
             Task.Factory.StartNew(() =>
             {
@@ -47,29 +58,25 @@ namespace HiEmsProxy.TaskServer.Actuator
                             //优先执行
                             _Tasklib = _ExcuteBlockingCollection.Take();
                             _ResultLib = Set(_Tasklib.DeviceProperty);
-                            _modbushelp.ExecuteEvent(_ResultLib);
                         }
                         else
                         {
                             if (_TaskList.Count > i) _Tasklib = _TaskList[i];    //_Tasklib = _BlockingCollection.Take();
                             // 判断是否在刷新间隔内
-                            bool res = _modbushelp.CheckRefreshInterval(_list, _Tasklib.Router, _Tasklib.DeviceProperty.RefreshRate, DateTime.Now); if (!res) continue;
+                            bool res = _modbushelp.CheckRefreshInterval(_list, _Tasklib.Router, (int)_Tasklib.DeviceProperty.Refresh, DateTime.Now); if (!res) continue;
                             _ResultLib = Set(_Tasklib.DeviceProperty);
                             _list.TryAdd(_Tasklib.Router, DateTime.Now);
                         }
-                        //数据上传
-                        if (_ResultLib != null)
+                        if (_ResultLib != null && _Tasklib != null)
                         {
-                            _Tasklib.BronTime = DateTime.Now;
-                            _ResultLib.Router = _Tasklib.Router;
-                            _modbushelp.UploadEvent(_ResultLib);
+                            _modbushelp.UploadData(_Tasklib, _ResultLib);
                         }
                     }
                 }
             });
         }
-    
-        private ResultLib Set(HiemsDeviceProperty DeviceProperty)
+
+        private ResultLib Set(HiemsDevicePropertyDto DeviceProperty)
         {
             ResultLib _ResultLib = new();
             //判断是否连接成功
@@ -77,13 +84,14 @@ namespace HiEmsProxy.TaskServer.Actuator
             {
                 bool RES = _SerialLib.ReConnect();
                 if (!RES)
-                {                  
+                {
+                    _common.DeviceConState(ID, "连接失败");
+                    _ResultLib.Result = "NG";
+                    _ResultLib.Value = "";
                     return _ResultLib;
                 }
             }
             //执行对应的方法
-
-
             return _ResultLib;
         }
 

@@ -46,3 +46,15 @@ D:\share\测试代码\HiEmsProxy\SerialLib\obj\Debug\net6.0\SerialLib.dll
 D:\share\测试代码\HiEmsProxy\SerialLib\obj\Debug\net6.0\refint\SerialLib.dll
 D:\share\测试代码\HiEmsProxy\SerialLib\obj\Debug\net6.0\SerialLib.pdb
 D:\share\测试代码\HiEmsProxy\SerialLib\obj\Debug\net6.0\ref\SerialLib.dll
+D:\Git\HiEmsProxy\SerialLib\bin\Debug\net6.0\SerialLib.deps.json
+D:\Git\HiEmsProxy\SerialLib\bin\Debug\net6.0\SerialLib.dll
+D:\Git\HiEmsProxy\SerialLib\bin\Debug\net6.0\SerialLib.pdb
+D:\Git\HiEmsProxy\SerialLib\obj\Debug\net6.0\SerialLib.csproj.AssemblyReference.cache
+D:\Git\HiEmsProxy\SerialLib\obj\Debug\net6.0\SerialLib.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git\HiEmsProxy\SerialLib\obj\Debug\net6.0\SerialLib.AssemblyInfoInputs.cache
+D:\Git\HiEmsProxy\SerialLib\obj\Debug\net6.0\SerialLib.AssemblyInfo.cs
+D:\Git\HiEmsProxy\SerialLib\obj\Debug\net6.0\SerialLib.csproj.CoreCompileInputs.cache
+D:\Git\HiEmsProxy\SerialLib\obj\Debug\net6.0\SerialLib.dll
+D:\Git\HiEmsProxy\SerialLib\obj\Debug\net6.0\refint\SerialLib.dll
+D:\Git\HiEmsProxy\SerialLib\obj\Debug\net6.0\SerialLib.pdb
+D:\Git\HiEmsProxy\SerialLib\obj\Debug\net6.0\ref\SerialLib.dll

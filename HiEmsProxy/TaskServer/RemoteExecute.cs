@@ -14,12 +14,9 @@ namespace HiEmsProxy.TaskServer
         {
             DelegateLib.ExecuteDelegate += ExecuteMain;
         }
-
-        public void ExecuteMain(ResultLib _ResultLib)
+        public void ExecuteMain(Tasklib _Tasklib)
         {
-
-           if(_ResultLib!=null) Console.WriteLine("远端执行结果:" + _ResultLib.Result);
-
+           if(_Tasklib != null) Console.WriteLine("远端执行结果:" + _Tasklib.ResultValue);
         }
     }
 }

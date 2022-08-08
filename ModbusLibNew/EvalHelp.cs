@@ -12,11 +12,18 @@ namespace ModbusLibNew
     {
         public string EvalMian(string data, string formula)
         {
-            if (formula == "" || formula == null) return data;
-            var interpreter = new Interpreter();
-            string row = formula;
-            string res = row.Replace("row", data.ToString());        
-            return interpreter.Eval(res).ToString();          
+            try
+            {
+                if (formula == "" || formula == null) return data;
+                var interpreter = new Interpreter();
+                string res = formula.Replace("raw", data.ToString());
+                var result = interpreter.Eval(res);
+                if (result != null) return result.ToString();
+            }
+            catch (Exception ex)
+            {
+            }
+            return "";
         }
     }
 }

@@ -13,145 +13,171 @@ using HiEmsProxy.TaskServer.Model;
 using HiEmsProxy.TaskServer.Models;
 using HiEmsProxy.TaskServer;
 using ModbusLibNew;
+using HiEMS.Model.Models;
+using Newtonsoft.Json;
+using HiEMS.Model.Business.Vo;
+using HiEMS.Model.Dto;
+using HiEmsProxy.Quartz;
 
 namespace HiEmsProxy.TaskServer
 {
     public class HiemsMain
-    {
-        string json = JsonCommon.Str_json;
-        string json1 = JsonCommon.Str_json1;
-        UpLoadLib _UpLoadLib = new UpLoadLib();
+    {      
         RemoteExecute _RemoteExecute = new RemoteExecute();
         TaskDistrib _TaskDistrib;
-        int i = 0;
-        public void Start()
+        SignalClien _SignalClien = new SignalClien();
+        UpLoadLib _UpLoadLib;
+        public HiemsMain()
         {
-             List<Tasklib> _List  =  AnalyseJsonToTask(json);
-            _TaskDistrib = new TaskDistrib();            
-            _TaskDistrib.DisToExecute(_List);        
-
-            Task.Run(() =>
+            DelegateLib.SignalDevicePropDelegate += SignalDevicePropDelegate;
+            DelegateLib.SignalRemoteDelegate += SignalRemoteDelegate;
+        }
+    
+        public async void Start()
+        {
+            bool res = await _SignalClien.Connect();
+            if (res) res = await _SignalClien.InitMain();
+            Console.Write("SignalClien init "+(res ? "OK " : "NG ")+DateTime.Now.ToString()+"\r\n");
+            _UpLoadLib = new UpLoadLib(_SignalClien);
+        }
+        //远端执行任务委托
+        private void SignalRemoteDelegate(string json)
+        {
+            Root _Root = JsonConvert.DeserializeObject<Root>(json);
+            if (_Root != null && _Root.code == 200)
             {
-                //while (true)
-                //{
-                //    i++;
-                //    Thread.Sleep(5000);
-                //    Console.WriteLine("更新json");
-                //    if (i % 2 == 0)
-                //    {
-                //        RefreshJson(json1);
-                //    }
-                //    else
-                //    {
-                //        RefreshJson(json);
-                //    }
-                //}
-
-                while (true)
-                {
-                    Thread.Sleep(3000);
-                    Tasklib _TaskLib = new Tasklib();
-                    _TaskLib.Router = "PCS.AlarmInfo.alarm";
-                    _TaskLib.DeviceProtocol = GetConfig(json, "PCS");
-                    _TaskLib.DeviceProperty = new HiemsDeviceProperty()
-                    {
-                        Describe = "掺入任务1",
-                        Function = "ReadDiscreteInputs",
-                        StartAddress = 0,
-                        Length = 10,
-                        RwType = "R",
-                        SlaveId = 1,
-                        Level = 1,           
-                        Value = "1 1 1",
-                        RefreshRate = 1,
-                    };
-                    InsertTask(_TaskLib);
-                }
-            });
+                List<Tasklib> _List = AnalyseJsonToTask(_Root,1);
+                if (_List!=null&& _List.Count>0) InsertTask(_List);
+            }
         }
-
-        //更新json
-        string OldJson = string.Empty;
-        public void RefreshJson(string json)
+        //采集任务委托
+        public void SignalDevicePropDelegate(string json)
         {
-            if (json == OldJson) return;
-            DelegateLib.manual.Set();
-             List<Tasklib> _List = AnalyseJsonToTask(json);                      
-            _TaskDistrib.UpdateAllTask(_List);          
-            DelegateLib.manual.Reset();
+            Root _Root = JsonConvert.DeserializeObject<Root>(json);
+            if (_Root != null && _Root.code == 200)
+            {
+                //创建缓存数据
+                List<DataCollectHubVo> cachedata = CreatResultJson(JsonConvert.SerializeObject(_Root.data));
+                _UpLoadLib._CacheList = cachedata;
+                //将任务分解提交给任务分发器
+                List<Tasklib> tasklibs = AnalyseJsonToTask(_Root, 0);
+                if (tasklibs != null && tasklibs.Count != 0)
+                {
+                    JsonCommon.SourceSnapshot = json;
+                    _TaskDistrib = new TaskDistrib();
+                    _TaskDistrib.DisToExecute(tasklibs);
+                }
+            }
         }
+
+
 
 
         //插入任务
-        public void InsertTask(Tasklib _TaskLib)
+        public void InsertTask(List<Tasklib> _TaskLib)
         {
-            Console.Write($"插入新的任务  {_TaskLib.DeviceProperty.Describe}\r\n");
-            _TaskDistrib.Insert(_TaskLib);
-        }
-
-
-        //解析json 将每条json任务加入_ListTaskLib
-        private List<Tasklib> _ListTaskLib = new List<Tasklib>();
-        public List<Tasklib> AnalyseJsonToTask(string json)
-        {
-            _ListTaskLib.Clear();
-            HiemsDeviceProtocol _config =null;
-            JObject jo = JObject.Parse(json);
-            var _DeviceInfo = jo["deviceInfo"].ToString();
-            var list = JObject.Parse(_DeviceInfo.ToString()).Properties().ToList();
-            foreach (var module in list)
+            foreach (var item in _TaskLib)
             {
-                string Modulejson = jo["deviceInfo"][module.Name].ToString();
-                JObject Modulejo = JObject.Parse(Modulejson);
-                JToken jToken = JToken.Parse(Modulejson);
-                var Modulelist = jToken.Select(x => x.ToObject<JProperty>().Name).ToList();
-                foreach (var item in Modulelist)
-                {
-                    if (item == "config") {
-                         _config = JsonCommon.DeserializeDataContractJson<HiemsDeviceProtocol>(Modulejo[item].ToString());
-                        continue;
-                    }          
-                    _ListTaskLib.AddRange(ForeachNode($"deviceInfo.{module.Name}.{item}", Modulejo[item].ToString(), _config));
-                }
-            }
-            return _ListTaskLib;
+                Console.Write($"远端执行任务  {item.DeviceProperty.Describe}\r\n");
+                _TaskDistrib.Insert(item);
+            }           
         }
-        private List<Tasklib> ForeachNode(string router, string json, HiemsDeviceProtocol _config)
+        /// <summary>
+        /// 解析json 将每条json任务加入_ListTaskLib
+        /// </summary>
+        /// <param name="_Root"></param>
+        /// <param name="tasktype">任务类型 0：采集任务  1：远端执行任务</param>
+        /// <returns></returns>
+        public List<Tasklib> AnalyseJsonToTask(Root _Root,int tasktype)
         {
-            List<Tasklib> _List = new List<Tasklib>();
-            JToken jToken = JToken.Parse(json);
-            JObject jo = JObject.Parse(json);
-            var list = jToken.Select(x => x.ToObject<JProperty>().Name).ToList();
-            foreach (var item in list)
+            List<Tasklib> _List = new List<Tasklib>();          
+            if (_Root!=null&& _Root.code == 200)
             {
-                for (int i = 0; i < 1; i++)
+                List<DataCollectHubVo> _list = _Root.data;               
+                if (_list == null) return _List;
+                for (int i = 0; i < _list.Count; i++)
                 {
-                    HiemsDeviceProperty _DeviceData = JsonCommon.DeserializeDataContractJson<HiemsDeviceProperty>(jo[item].ToString());
-                    _DeviceData.StartAddress = i + 1;                   
-                    if (_DeviceData != null)
+                    HiemsDeviceProtocol _DeviceProtocol = _list[i].Protocol;
+                    List<HiemsDevicePropertyDto> _ListDeviceProperty = _list[i].Property;
+                    if (_ListDeviceProperty == null) continue;             
+                    foreach (HiemsDevicePropertyDto _DevicePropertyDto in _ListDeviceProperty)
                     {
                         Tasklib _TaskLib = new()
                         {
-                            DeviceProtocol = _config,
-                            DeviceProperty = _DeviceData,
-                            Router = router + "." + item+(i+1).ToString(),
-                        };
+                            DeviceProtocol = _DeviceProtocol,
+                            DeviceProperty = _DevicePropertyDto,
+                            label = _list[i].Label,
+                            TaskType = tasktype,                            
+                        };                     
+                        _TaskLib.infoId = _list[i].InfoId;
+                        _TaskLib.deviceId = (int)_list[i].DeviceId;
+                        _TaskLib.localId = _list[i].LocalId;
+                        if (_DevicePropertyDto.StartAddr != null) _TaskLib.DeviceProperty.StartAddress = int.Parse(_DevicePropertyDto.StartAddr);
+                        _TaskLib.Router = $"{_list[i].InfoId}+{_DevicePropertyDto.Id}+[{_DevicePropertyDto.DataIdx}]" ;
                         _List.Add(_TaskLib);
                     }
                 }
             }
             return _List;
         }
-        //获取模块的config
-        private HiemsDeviceProtocol GetConfig(string json,string modulename)
+
+        //生成一份结果的对象 CacheJson.json
+        public List<DataCollectHubVo>  CreatResultJson(string json)
         {
-            JObject jo = JObject.Parse(json);
-            string Modulejson = jo["deviceInfo"][modulename].ToString();
-            JObject Modulejo = JObject.Parse(Modulejson);
-            HiemsDeviceProtocol _config = JsonCommon.DeserializeDataContractJson<HiemsDeviceProtocol>(Modulejo["config"].ToString());
-            return _config;
+            List<DataCollectHubVo> _listDataCollectHubVo;
+            try
+            {
+                if (JsonCommon.CacheSnapshot!="")
+                {
+                    _listDataCollectHubVo = JsonConvert.DeserializeObject<List<DataCollectHubVo>>(JsonCommon.CacheSnapshot);
+                }
+                else
+                {
+                    _listDataCollectHubVo = JsonConvert.DeserializeObject<List<DataCollectHubVo>>(json);
+                    for (int i = 0; i < _listDataCollectHubVo.Count; i++)
+                    {
+                        List<HiemsDevicePropertyDto> listProperty = _listDataCollectHubVo[i].Property;
+                        if (listProperty == null|| listProperty.Count==0) continue;
+                        _listDataCollectHubVo[i].Data = new List<HiemsDeviceDataDto>();
+                        for (int j = 0; j < listProperty.Count; j++)
+                        {
+                            HiemsDeviceDataDto _HiemsDeviceDataDto = new HiemsDeviceDataDto()
+                            {
+                                Describe = listProperty[j].Describe,
+                                PropertyId = listProperty[j].Id,
+                                Name = listProperty[j].Name,
+                                InfoId = _listDataCollectHubVo[i].InfoId,
+                                LocalId = _listDataCollectHubVo[i].LocalId,
+                                RwType = listProperty[j].RwType,
+                                DataIdx = listProperty[j].DataIdx,
+                                Code= listProperty[j].Code,
+                            };
+                          //  if (listProperty[j].Type.ToUpper() == "ALARM") _HiemsDeviceDataDto.Value = "False";
+                            _listDataCollectHubVo[i].Data.Add(_HiemsDeviceDataDto);
+                            //_listDataCollectHubVo[i].Property = null;
+                            //_listDataCollectHubVo[i].Protocol = null;
+                        }
+                    }
+                    JsonCommon.CacheSnapshot = JsonConvert.SerializeObject(_listDataCollectHubVo);
+                }
+                return _listDataCollectHubVo;
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
         }
 
+
+        //清除缓存
+        public void ClearCacheJson()
+        {
+            if (File.Exists(JsonCommon. CachePath))
+            {
+                JsonCommon.CacheSnapshot = "";
+                File.Delete(JsonCommon.CachePath);
+            }
+        }
 
         #region 动态库反射获取对应的方法名
         //object obj = null;
@@ -170,7 +196,7 @@ namespace HiEmsProxy.TaskServer
         //{
         //    try
         //    {
-                 
+
         //        parasObj = new object[] { InitJson };
         //        int index = path.LastIndexOf('\\');
         //        string dllname = path.Substring(index + 1);
@@ -208,15 +234,36 @@ namespace HiEmsProxy.TaskServer
         //    string _CodeBase = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
         //    _CodeBase = _CodeBase[8..];    // 8是file:// 的长度
         //    string[] arrSection = _CodeBase.Split(new char[] { '/' });
-
         //    string _FolderPath = "";
         //    for (int i = 0; i < arrSection.Length - 1; i++)
         //    {
         //        _FolderPath += arrSection[i] + "/";
         //    }
-
         //    return _FolderPath;
         //}
+
+        private void Assembly1()
+        {
+
+            //加载程序集(dll文件地址)，使用Assembly类   
+            Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + "ClassLibrary1.dll");
+
+            //获取类型，参数（名称空间+类）   
+            Type type = assembly.GetType("ClassLibrary1.Class2");
+            //创建该对象的实例，object类型，参数（名称空间+类）   
+            object instance = assembly.CreateInstance("ClassLibrary1.Class2");
+
+            //设置ClassLibrary1.dll中Show_Str方法中的参数类型，Type[]类型；如有多个参数可以追加多个   
+            Type[] params_type = new Type[1];
+            params_type[0] = Type.GetType("System.String");//System.Int32是整型
+                                                           //设置ClassLibrary1.dll中Show_Str方法中的参数值；如有多个参数可以追加多个   
+            Object[] params_obj = new Object[1];
+            params_obj[0] = "lqwvje-Dll里面方法参数";
+
+            //执行Show_Str方法   params_type方法的参数类型   instance对象实例 params_obj参数值
+            object value = type.GetMethod("Show_Str", params_type).Invoke(instance, params_obj);
+        }
+
         #endregion
     }
 }

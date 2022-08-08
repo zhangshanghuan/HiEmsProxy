@@ -28,10 +28,9 @@ namespace ModbusLibNew
                     case DataFormatEnum.Bool:
                     case DataFormatEnum.Bit:
                         bool[] resbool = BitLib.GetBitArrayFromByteArray(_SoureByteData.Skip(skipCount).Take(length).ToArray(), length);
-                        return string.Join(" ", resbool.ToArray());
+                        return string.Join(",", resbool.ToArray());
                     case DataFormatEnum.Uint32:
-                        _SoureData = UShortLib.GetUShortArrayFromByteArray(_SoureByteData).Skip(skipCount).Take(length).ToArray();
-                        listString = new string[_SoureData.Length];
+                        _SoureData = UShortLib.GetUShortArrayFromByteArray(_SoureByteData).Skip(skipCount).Take(length).ToArray();                       
                         listString = new string[_SoureData.Length / 2];
                         for (int i = 0; i < listString.Length; i++)
                         {
@@ -76,7 +75,7 @@ namespace ModbusLibNew
                         //    }
                         //    break;
                 }
-                return string.Join(" ", listString.ToArray());
+                return string.Join(",", listString.ToArray());
             }
             catch (Exception EX)
             {
@@ -89,7 +88,7 @@ namespace ModbusLibNew
         {         
            return UShortLib.GetUShortArrayFromString(str);
         }
-        public string[] StrToStrArray(string str, string split=" ")
+        public string[] StrToStrArray(string str, string split=",")
         {
             return str.Split(split);
         }

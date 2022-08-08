@@ -1,13 +1,14 @@
-using SqlSugar;
+using System;
+using System.Collections.Generic;
 using System.IO.Ports;
+using SqlSugar;
 
-namespace HiEmsProxy.TaskServer.Models
+
+namespace HiEMS.Model.Models
 {
     /// <summary>
-    /// ，数据实体对象
-    ///
-    /// @author admin
-    /// @date 2022-07-18
+    /// 设备协议数据实体对象
+    /// @author jepen
     /// </summary>
     [SugarTable("hiems_device_protocol")]
     public class HiemsDeviceProtocol
@@ -17,7 +18,13 @@ namespace HiEmsProxy.TaskServer.Models
         /// 空值 : false  
         /// </summary>
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
-        public int Id { get; set; }
+        public int? Id { get; set; }
+
+        /// <summary>
+        /// 描述 :状态 
+        /// 空值 : true  
+        /// </summary>
+        public string Status { get; set; }
 
         /// <summary>
         /// 描述 :协议类型 
@@ -35,7 +42,7 @@ namespace HiEmsProxy.TaskServer.Models
         /// 描述 :IP端口 
         /// 空值 : true  
         /// </summary>
-        public int Port { get; set; }
+        public int? Port { get; set; }
 
         /// <summary>
         /// 描述 :串口名 
@@ -47,30 +54,33 @@ namespace HiEmsProxy.TaskServer.Models
         /// 描述 :波特率 
         /// 空值 : true  
         /// </summary>
-        public int Baudrate { get; set; } = 9600;
+        public int? Baudrate { get; set; }
 
         /// <summary>
         /// 描述 :数据位 
         /// 空值 : true  
         /// </summary>
-        public int Databits { get; set; } = 8;
+        public int? Databits { get; set; }
 
         /// <summary>
         /// 描述 :校验位 
         /// 空值 : true  
         /// </summary>
-        public Parity Parity { get; set; } = Parity.None;
+        public int? Parity { get; set; }
 
         /// <summary>
         /// 描述 :停止位 
         /// 空值 : true  
         /// </summary>
-        public StopBits Stopbits { get; set; } = StopBits.One;
+        public int? Stopbits { get; set; }
 
         /// <summary>
         /// 描述 :附加信息 
         /// 空值 : true  
         /// </summary>
         public string Attach { get; set; }
+
+
+
     }
 }

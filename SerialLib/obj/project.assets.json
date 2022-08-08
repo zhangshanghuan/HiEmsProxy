@@ -226,11 +226,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\share\\测试代码\\HiEmsProxy\\SerialLib\\SerialLib.csproj",
+      "projectUniqueName": "D:\\Git\\HiEmsProxy\\SerialLib\\SerialLib.csproj",
       "projectName": "SerialLib",
-      "projectPath": "D:\\share\\测试代码\\HiEmsProxy\\SerialLib\\SerialLib.csproj",
+      "projectPath": "D:\\Git\\HiEmsProxy\\SerialLib\\SerialLib.csproj",
       "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
-      "outputPath": "D:\\share\\测试代码\\HiEmsProxy\\SerialLib\\obj\\",
+      "outputPath": "D:\\Git\\HiEmsProxy\\SerialLib\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

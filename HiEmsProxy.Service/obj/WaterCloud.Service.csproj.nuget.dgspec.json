@@ -1,0 +1,427 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Service\\WaterCloud.Service.csproj": {}
+  },
+  "projects": {
+    "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.CodeGenerator\\WaterCloud.CodeGenerator.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.CodeGenerator\\WaterCloud.CodeGenerator.csproj",
+        "projectName": "WaterCloud.CodeGenerator",
+        "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.CodeGenerator\\WaterCloud.CodeGenerator.csproj",
+        "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
+        "outputPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.CodeGenerator\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "d:\\Users\\zhangsh\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj": {
+                "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj"
+              },
+              "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Domain\\WaterCloud.Domain.csproj": {
+                "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Domain\\WaterCloud.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "SqlSugarCore": {
+              "target": "Package",
+              "version": "[5.0.5.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj",
+        "projectName": "WaterCloud.Code",
+        "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj",
+        "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
+        "outputPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "d:\\Users\\zhangsh\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            },
+            "CSRedisCore": {
+              "target": "Package",
+              "version": "[3.6.8, )"
+            },
+            "Microsoft.AspNetCore.Html.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.StaticFiles": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyModel": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.5.5, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.2.2, )"
+            },
+            "Serenity.Web": {
+              "target": "Package",
+              "version": "[3.14.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "ZKWeb.System.Drawing": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
+            "iTextSharp.LGPLv2.Core.Fix": {
+              "target": "Package",
+              "version": "[1.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Data\\WaterCloud.DataBase.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Data\\WaterCloud.DataBase.csproj",
+        "projectName": "WaterCloud.DataBase",
+        "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Data\\WaterCloud.DataBase.csproj",
+        "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
+        "outputPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "d:\\Users\\zhangsh\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj": {
+                "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "SqlSugarCore": {
+              "target": "Package",
+              "version": "[5.0.5.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Domain\\WaterCloud.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Domain\\WaterCloud.Domain.csproj",
+        "projectName": "WaterCloud.Domain",
+        "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Domain\\WaterCloud.Domain.csproj",
+        "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
+        "outputPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "d:\\Users\\zhangsh\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj": {
+                "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj"
+              },
+              "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Data\\WaterCloud.DataBase.csproj": {
+                "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Data\\WaterCloud.DataBase.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "SqlSugarCore": {
+              "target": "Package",
+              "version": "[5.0.5.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Service\\WaterCloud.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Service\\WaterCloud.Service.csproj",
+        "projectName": "WaterCloud.Service",
+        "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Service\\WaterCloud.Service.csproj",
+        "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
+        "outputPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "d:\\Users\\zhangsh\\Appdata\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.CodeGenerator\\WaterCloud.CodeGenerator.csproj": {
+                "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.CodeGenerator\\WaterCloud.CodeGenerator.csproj"
+              },
+              "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj": {
+                "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Code\\WaterCloud.Code.csproj"
+              },
+              "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Data\\WaterCloud.DataBase.csproj": {
+                "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Data\\WaterCloud.DataBase.csproj"
+              },
+              "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Domain\\WaterCloud.Domain.csproj": {
+                "projectPath": "D:\\ForMySelf\\WaterCloud-net6-SqlSugar\\WaterCloud.Domain\\WaterCloud.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.3.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

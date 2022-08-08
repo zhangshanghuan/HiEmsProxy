@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModbusLibNew", "ModbusLibNe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiEmsProxy", "HiEmsProxy\HiEmsProxy.csproj", "{6FCD6AFF-24D8-4A1C-B989-48F471B402A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wsk.Core.QuartzNet", "Wsk.Core.QuartzNet\Wsk.Core.QuartzNet.csproj", "{D9420B62-9E75-45D4-8057-349EEC2450B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6FCD6AFF-24D8-4A1C-B989-48F471B402A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FCD6AFF-24D8-4A1C-B989-48F471B402A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FCD6AFF-24D8-4A1C-B989-48F471B402A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9420B62-9E75-45D4-8057-349EEC2450B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9420B62-9E75-45D4-8057-349EEC2450B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9420B62-9E75-45D4-8057-349EEC2450B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9420B62-9E75-45D4-8057-349EEC2450B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

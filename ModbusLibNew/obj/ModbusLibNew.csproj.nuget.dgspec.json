@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj": {}
+    "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj": {}
   },
   "projects": {
-    "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj": {
+    "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
+        "projectUniqueName": "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
         "projectName": "ModbusLibNew",
-        "projectPath": "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
+        "projectPath": "D:\\Git\\HiEmsProxy\\ModbusLibNew\\ModbusLibNew.csproj",
         "packagesPath": "C:\\Users\\zhangsh\\.nuget\\packages\\",
-        "outputPath": "D:\\share\\测试代码\\HiEmsProxy\\ModbusLibNew\\obj\\",
+        "outputPath": "D:\\Git\\HiEmsProxy\\ModbusLibNew\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

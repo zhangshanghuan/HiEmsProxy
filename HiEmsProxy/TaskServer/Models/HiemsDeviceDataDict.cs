@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using SqlSugar;
 
-namespace HiEmsProxy.TaskServer.Models
+
+namespace HiEMS.Model.Models
 {
     /// <summary>
-    /// ，数据实体对象
-    ///
-    /// @author admin
-    /// @date 2022-07-18
+    /// 设备数据字典数据实体对象
+    /// @author jepen
     /// </summary>
     [SugarTable("hiems_device_data_dict")]
     public class HiemsDeviceDataDict
@@ -24,7 +23,7 @@ namespace HiEmsProxy.TaskServer.Models
         /// 描述 :属性ID 
         /// 空值 : true  
         /// </summary>
-        public int PropertyId { get; set; }
+        public int? PropertyId { get; set; }
 
         /// <summary>
         /// 描述 :路由路径 
@@ -49,5 +48,8 @@ namespace HiEmsProxy.TaskServer.Models
         /// 空值 : true  
         /// </summary>
         public string Attach { get; set; }
+
+
+
     }
 }

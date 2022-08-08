@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using SqlSugar;
 
-namespace HiEmsProxy.TaskServer.Models
+
+namespace HiEMS.Model.Models
 {
     /// <summary>
-    /// ，数据实体对象
-    ///
-    /// @author admin
-    /// @date 2022-07-18
+    /// 设备信息数据实体对象
+    /// @author jepen
     /// </summary>
     [SugarTable("hiems_device_info")]
     public class HiemsDeviceInfo
@@ -21,10 +20,16 @@ namespace HiEmsProxy.TaskServer.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// 描述 :属性ID 
+        /// 描述 :设备ID 
         /// 空值 : true  
         /// </summary>
-        public int PropertyId { get; set; }
+        public int? DeviceId { get; set; }
+
+        /// <summary>
+        /// 描述 :状态 
+        /// 空值 : true  
+        /// </summary>
+        public string Status { get; set; }
 
         /// <summary>
         /// 描述 :名称 
@@ -39,22 +44,22 @@ namespace HiEmsProxy.TaskServer.Models
         public string Describe { get; set; }
 
         /// <summary>
-        /// 描述 :项目ID  deptId 
+        /// 描述 :项目ID 
         /// 空值 : true  
         /// </summary>
-        public string ProjectId { get; set; }
+        public int? ProjectId { get; set; }
 
         /// <summary>
         /// 描述 :采集器ID 
         /// 空值 : true  
         /// </summary>
-        public string LocalId { get; set; }
+        public int? LocalId { get; set; }
 
         /// <summary>
         /// 描述 :父ID 
         /// 空值 : true  
         /// </summary>
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         /// <summary>
         /// 描述 :路由路径 
@@ -66,12 +71,21 @@ namespace HiEmsProxy.TaskServer.Models
         /// 描述 :设备层级 
         /// 空值 : true  
         /// </summary>
-        public int Level { get; set; }
+        public int? Level { get; set; }
+
+        /// <summary>
+        /// 描述 :协议ID 
+        /// 空值 : true  
+        /// </summary>
+        public int? ProtocolId { get; set; }
 
         /// <summary>
         /// 描述 :附加信息 
         /// 空值 : true  
         /// </summary>
         public string Attach { get; set; }
+
+
+
     }
 }

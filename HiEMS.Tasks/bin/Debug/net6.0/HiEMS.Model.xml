@@ -1,0 +1,2583 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HiEMS.Model</name>
+    </assembly>
+    <members>
+        <member name="T:HiEMS.Model.Dto.GenDemoDto">
+            <summary>
+            演示输入对象
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.GenDemoDto.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.GenDemoQueryDto">
+            <summary>
+            演示查询对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDeviceDataDictDto">
+            <summary>
+            设备数据字典输入对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDictDto.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDictDto.PropertyId">
+            <summary>
+            描述 :属性ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDictDto.Router">
+            <summary>
+            描述 :路由路径 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDictDto.TypeEmu">
+            <summary>
+            描述 :类型枚举 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDictDto.Typename">
+            <summary>
+            描述 :类型名称 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDictDto.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDeviceDataDictQueryDto">
+            <summary>
+            设备数据字典查询对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDeviceDataDto">
+            <summary>
+            设备数据输入对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDto.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDto.Router">
+            <summary>
+            描述 :路由 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDto.Value">
+            <summary>
+            描述 :值 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDto.Result">
+            <summary>
+            描述 :结果 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDto.RwType">
+            <summary>
+            描述 :读写模式 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDto.LocalId">
+            <summary>
+            描述 :数据来源 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDto.AddTime">
+            <summary>
+            描述 :插入时间 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceDataDto.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDeviceDataQueryDto">
+            <summary>
+            设备数据查询对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDeviceInfoDto">
+            <summary>
+            设备信息输入对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.PropertyId">
+            <summary>
+            描述 :属性ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.Name">
+            <summary>
+            描述 :名称 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.Describe">
+            <summary>
+            描述 :描述 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.ProjectId">
+            <summary>
+            描述 :项目ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.LocalId">
+            <summary>
+            描述 :采集器ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.ParentId">
+            <summary>
+            描述 :父ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.Router">
+            <summary>
+            描述 :路由路径 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.Level">
+            <summary>
+            描述 :设备层级 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.ProtocolId">
+            <summary>
+            描述 :协议ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceInfoDto.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDeviceInfoQueryDto">
+            <summary>
+            设备信息查询对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDevicePropertyDto">
+            <summary>
+            设备属性输入对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Name">
+            <summary>
+            描述 :属性名称 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Describe">
+            <summary>
+            描述 :描述 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.ParentId">
+            <summary>
+            描述 :父ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Router">
+            <summary>
+            描述 :路由路径 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Code">
+            <summary>
+            描述 :编码 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.DeviceType">
+            <summary>
+            描述 :设备类型 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Level">
+            <summary>
+            描述 :层级 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.RefreshRate">
+            <summary>
+            描述 :刷新率 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Protocol">
+            <summary>
+            描述 :协议类型 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.SlaveId">
+            <summary>
+            描述 :从站ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.StartAddress">
+            <summary>
+            描述 :起始地址 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Function">
+            <summary>
+            描述 :功能码 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Length">
+            <summary>
+            描述 :长度 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.DataFormat">
+            <summary>
+            描述 :数据格式 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.DataEmu">
+            <summary>
+            描述 :数据枚举 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Formula">
+            <summary>
+            描述 :计算公式 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Unit">
+            <summary>
+            描述 :单位 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Value">
+            <summary>
+            描述 :默认值 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.RunFunc">
+            <summary>
+            描述 :执行类型 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.DataNum">
+            <summary>
+            描述 :数据个数 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.DataCount">
+            <summary>
+            描述 :数据值总数 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.RwType">
+            <summary>
+            描述 :读写模式 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDevicePropertyDto.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDevicePropertyQueryDto">
+            <summary>
+            设备属性查询对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDeviceProtocolDto">
+            <summary>
+            设备协议输入对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Protocol">
+            <summary>
+            描述 :协议类型 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Ip">
+            <summary>
+            描述 :IP地址 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Port">
+            <summary>
+            描述 :IP端口 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Portname">
+            <summary>
+            描述 :串口名 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Baudrate">
+            <summary>
+            描述 :波特率 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Databits">
+            <summary>
+            描述 :数据位 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Parity">
+            <summary>
+            描述 :校验位 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Stopbits">
+            <summary>
+            描述 :停止位 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Dto.HiemsDeviceProtocolDto.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.HiemsDeviceProtocolQueryDto">
+            <summary>
+            设备协议查询对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.ArticleCategoryDto">
+            <summary>
+            文章目录输入对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.ArticleCategoryQueryDto">
+            <summary>
+            文章目录查询对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.CommonLangDto">
+            <summary>
+            多语言配置输入对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Dto.CommonLangQueryDto">
+            <summary>
+            多语言配置查询对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Models.GenDemo">
+            <summary>
+            演示，数据实体对象
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.Id">
+            <summary>
+            描述 : id
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.Name">
+            <summary>
+            描述 : 名称
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.Icon">
+            <summary>
+            描述 : 图片
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.ShowStatus">
+            <summary>
+            描述 : 显示状态
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.AddTime">
+            <summary>
+            描述 : 添加时间
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.Sex">
+            <summary>
+            描述 : 用户性别
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.Sort">
+            <summary>
+            描述 : 排序
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.Remark">
+            <summary>
+            描述 : 备注
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.BeginTime">
+            <summary>
+            描述 : 开始时间
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.EndTime">
+            <summary>
+            描述 : 结束时间
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.Feature">
+            <summary>
+            描述 : 特征
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.GenDemo.ParentId">
+            <summary>
+            描述 : 父级id
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Models.HiemsDeviceData">
+            <summary>
+            设备数据数据实体对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceData.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceData.Router">
+            <summary>
+            描述 :路由 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceData.Value">
+            <summary>
+            描述 :值 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceData.Result">
+            <summary>
+            描述 :结果 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceData.RwType">
+            <summary>
+            描述 :读写模式 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceData.LocalId">
+            <summary>
+            描述 :数据来源 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceData.AddTime">
+            <summary>
+            描述 :插入时间 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceData.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Models.HiemsDeviceDataDict">
+            <summary>
+            设备数据字典数据实体对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceDataDict.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceDataDict.PropertyId">
+            <summary>
+            描述 :属性ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceDataDict.Router">
+            <summary>
+            描述 :路由路径 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceDataDict.TypeEmu">
+            <summary>
+            描述 :类型枚举 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceDataDict.Typename">
+            <summary>
+            描述 :类型名称 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceDataDict.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Models.HiemsDeviceInfo">
+            <summary>
+            设备信息数据实体对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.PropertyId">
+            <summary>
+            描述 :属性ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.Name">
+            <summary>
+            描述 :名称 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.Describe">
+            <summary>
+            描述 :描述 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.ProjectId">
+            <summary>
+            描述 :项目ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.LocalId">
+            <summary>
+            描述 :采集器ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.ParentId">
+            <summary>
+            描述 :父ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.Router">
+            <summary>
+            描述 :路由路径 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.Level">
+            <summary>
+            描述 :设备层级 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.ProtocolId">
+            <summary>
+            描述 :协议ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceInfo.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Models.HiemsDeviceProperty">
+            <summary>
+            设备属性数据实体对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Name">
+            <summary>
+            描述 :属性名称 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Describe">
+            <summary>
+            描述 :描述 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.ParentId">
+            <summary>
+            描述 :父ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Router">
+            <summary>
+            描述 :路由路径 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Code">
+            <summary>
+            描述 :编码 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.DeviceType">
+            <summary>
+            描述 :设备类型 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Level">
+            <summary>
+            描述 :层级 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.RefreshRate">
+            <summary>
+            描述 :刷新率 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Protocol">
+            <summary>
+            描述 :协议类型 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.SlaveId">
+            <summary>
+            描述 :从站ID 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.StartAddress">
+            <summary>
+            描述 :起始地址 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Function">
+            <summary>
+            描述 :功能码 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Length">
+            <summary>
+            描述 :长度 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.DataFormat">
+            <summary>
+            描述 :数据格式 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.DataEmu">
+            <summary>
+            描述 :数据枚举 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Formula">
+            <summary>
+            描述 :计算公式 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Unit">
+            <summary>
+            描述 :单位 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Value">
+            <summary>
+            描述 :默认值 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.RunFunc">
+            <summary>
+            描述 :执行类型 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.DataNum">
+            <summary>
+            描述 :数据个数 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.DataCount">
+            <summary>
+            描述 :数据值总数 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.RwType">
+            <summary>
+            描述 :读写模式 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProperty.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Models.HiemsDeviceProtocol">
+            <summary>
+            设备协议数据实体对象
+            @author jepen
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Id">
+            <summary>
+            描述 :ID 
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Protocol">
+            <summary>
+            描述 :协议类型 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Ip">
+            <summary>
+            描述 :IP地址 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Port">
+            <summary>
+            描述 :IP端口 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Portname">
+            <summary>
+            描述 :串口名 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Baudrate">
+            <summary>
+            描述 :波特率 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Databits">
+            <summary>
+            描述 :数据位 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Parity">
+            <summary>
+            描述 :校验位 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Stopbits">
+            <summary>
+            描述 :停止位 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.HiemsDeviceProtocol.Attach">
+            <summary>
+            描述 :附加信息 
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.Models.CommonLang">
+            <summary>
+            多语言配置，数据实体对象
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.CommonLang.Id">
+            <summary>
+            描述 : id
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.CommonLang.LangCode">
+            <summary>
+            描述 : 语言code
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.CommonLang.LangKey">
+            <summary>
+            描述 : 语言key
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.CommonLang.LangName">
+            <summary>
+            描述 : 名称
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.Models.CommonLang.Addtime">
+            <summary>
+            描述 : 添加时间
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.PagedInfo`1">
+            <summary>
+            分页参数
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.PagedInfo`1.PageSize">
+            <summary>
+            每页行数
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.PagedInfo`1.PageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.PagedInfo`1.TotalNum">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.PagedInfo`1.TotalPage">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.PagerInfo.PageNum">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.PagerInfo.TotalNum">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.PagerInfo.TotalPage">
+            <summary>
+            总页码
+            </summary>
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.PagerInfo.Sort">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.PagerInfo.SortType">
+            <summary>
+            排序类型,前端传入的是"ascending"，"descending"
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Article">
+            <summary>
+            文章表
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Article.Content">
+            <summary>
+            文章内容
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Article.AuthorName">
+            <summary>
+            作者名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Article.Status">
+            <summary>
+            文章状态 1、发布 2、草稿
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Article.Fmt_type">
+            <summary>
+            编辑器类型 markdown,html
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Article.Tags">
+            <summary>
+            文章标签eg：Net5,java
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Article.CoverUrl">
+            <summary>
+            封面地址
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.ArticleCategory">
+            <summary>
+            文章目录
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.ArticleCategory.CategoryId">
+            <summary>
+            目录id
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.GenTableDto.Params">
+            <summary>
+            额外参数
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Dto.Params">
+            <summary>
+            额外参数
+            ****注意里面参数统一首字母小写*****
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.Params.CheckedBtn">
+            <summary>
+            额外参数字符串
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.GenTableColumnDto.HtmlType">
+            <summary>
+            显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.GenTableColumnDto.QueryType">
+            <summary>
+            查询类型（等于、不等于、大于、小于、范围）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.GenTableColumnDto.DictType">
+            <summary>
+            字典类型
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.GenTableColumnDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.LoginBodyDto.Username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.LoginBodyDto.Password">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.LoginBodyDto.Code">
+            验证码
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.LoginBodyDto.Uuid">
+            唯一标识
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.parentId">
+            <summary>
+            父菜单ID
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.orderNum">
+            <summary>
+            显示顺序
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.path">
+            <summary>
+            路由地址
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.component">
+            <summary>
+            组件路径
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.isCache">
+            <summary>
+            是否缓存（1缓存 0不缓存）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.isFrame">
+            <summary>
+            是否外链 1、是 0、否
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.menuType">
+            <summary>
+            类型（M目录 C菜单 F按钮 L链接）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.visible">
+            <summary>
+            显示状态（0显示 1隐藏）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.status">
+            <summary>
+            菜单状态（0正常 1停用）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.perms">
+            <summary>
+            权限字符串
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.icon">
+            <summary>
+            菜单图标
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.MenuDto.MenuNameKey">
+            <summary>
+            翻译key
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.RegisterDto.Username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.RegisterDto.Password">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.RegisterDto.Code">
+            验证码
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.RegisterDto.Uuid">
+            唯一标识
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.RoleUsersCreateDto.RoleId">
+            <summary>
+            描述 : 角色id 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.RoleUsersCreateDto.UserIds">
+            <summary>
+            描述 : 用户编码 [1,2,3,4] 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Dto.SysConfigDto">
+            <summary>
+            参数配置输入对象模型
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Dto.SysConfigQueryDto">
+            <summary>
+            参数配置查询对象模型
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Dto.SysFileDto">
+            <summary>
+            文件存储输入对象
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.RealName">
+            <summary>
+            文件原名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.FileType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.FileName">
+            <summary>
+            描述 : 存储文件名
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.FileUrl">
+            <summary>
+            描述 : 文件存储地址 eg：/uploads/20220202
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.StorePath">
+            <summary>
+            描述 : 仓库位置 eg：/uploads
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.FileSize">
+            <summary>
+            描述 : 文件大小
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.FileExt">
+            <summary>
+            描述 : 文件扩展名
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.Create_by">
+            <summary>
+            描述 : 创建人
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.Create_time">
+            <summary>
+            描述 : 上传时间
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.StoreType">
+            <summary>
+            描述 : 存储类型
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysFileDto.AccessUrl">
+            <summary>
+            描述 : 访问路径
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysLogininfoDto.Ipaddr">
+            <summary>
+            IP 地址
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysLogininfoDto.Status">
+            <summary>
+            登录状态 0成功 1失败
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysLogininfoDto.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Dto.SysNoticeDto">
+            <summary>
+            通知公告表输入对象
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Dto.SysNoticeQueryDto">
+            <summary>
+            通知公告表查询对象
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysOperLogDto.pageNum">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysOperLogDto.operName">
+            <summary>
+            操作人员
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysOperLogDto.BusinessType">
+            <summary>
+            业务类型 0=其它,1=新增,2=修改,3=删除,4=授权,5=导出,6=导入,7=强退,8=生成代码,9=清空数据
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysOperLogDto.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysOperLogDto.Title">
+            <summary>
+            操作模块
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysRoleDto.MenuIds">
+            <summary>
+            角色分配菜单
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.SysUserDto.Sex">
+            <summary>
+            '用户性别（0男 1女 2未知）',
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksQueryDto.QueryText">
+            <summary>
+            描述 : 查询字符串 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Dto.TasksCreateDto">
+            <summary>
+            添加任务
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.Name">
+            <summary>
+            描述 : 任务名称 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.JobGroup">
+            <summary>
+            描述 : 任务分组 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.Cron">
+            <summary>
+            描述 : 运行时间表达式 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.AssemblyName">
+            <summary>
+            描述 : 程序集名称 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.ClassName">
+            <summary>
+            描述 : 任务所在类 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.Remark">
+            <summary>
+            描述 : 任务描述 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.BeginTime">
+            <summary>
+            描述 : 开始时间 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.EndTime">
+            <summary>
+            描述 : 结束时间 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.TriggerType">
+            <summary>
+            描述 : 触发器类型（0、simple 1、cron） 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.IntervalSecond">
+            <summary>
+            描述 : 执行间隔时间(单位:秒) 
+            空值 : False
+            默认 : 0
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.JobParams">
+            <summary>
+            描述 : 传入参数 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksCreateDto.TaskType">
+            <summary>
+            1、程序集任务 2、apiUrl任务
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Dto.TasksUpdateDto">
+            <summary>
+            更新任务
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.ID">
+            <summary>
+            描述 : UID 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.Name">
+            <summary>
+            描述 : 任务名称 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.JobGroup">
+            <summary>
+            描述 : 任务分组 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.Cron">
+            <summary>
+            描述 : 运行时间表达式 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.AssemblyName">
+            <summary>
+            描述 : 程序集名称 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.ClassName">
+            <summary>
+            描述 : 任务所在类 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.Remark">
+            <summary>
+            描述 : 任务描述 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.BeginTime">
+            <summary>
+            描述 : 开始时间 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.EndTime">
+            <summary>
+            描述 : 结束时间 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.TriggerType">
+            <summary>
+            描述 : 触发器类型（0、simple 1、cron） 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.IntervalSecond">
+            <summary>
+            描述 : 执行间隔时间(单位:秒) 
+            空值 : False
+            默认 : 0
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.JobParams">
+            <summary>
+            描述 : 传入参数 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksUpdateDto.TaskType">
+            <summary>
+            1、程序集任务 2、apiUrl任务
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Dto.TasksLogQueryDto.Name">
+            <summary>
+            描述 : 查询字符串 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.GenTable">
+            <summary>
+            代码生成表
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.TableId">
+            <summary>
+            表id
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.DbName">
+            <summary>
+            数据库名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.TableName">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.TableComment">
+            <summary>
+            表描述
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.SubTableName">
+            <summary>
+            关联父表的表名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.SubTableFkName">
+            <summary>
+            本表关联父表的外键名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.ClassName">
+            <summary>
+            csharp类名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.TplCategory">
+            <summary>
+            使用的模板（crud单表操作 tree树表操作 sub主子表操作）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.BaseNameSpace">
+            <summary>
+            基本命名空间前缀
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.ModuleName">
+            <summary>
+            生成模块名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.BusinessName">
+            <summary>
+            生成业务名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.FunctionName">
+            <summary>
+            生成功能名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.FunctionAuthor">
+            <summary>
+            生成作者名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.GenType">
+            <summary>
+            生成代码方式（0zip压缩包 1自定义路径）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.Options">
+            <summary>
+            其他生成选项
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.Columns">
+            表列信息 
+        </member>
+        <member name="P:HiEMS.Model.System.GenTable.SubTable">
+            <summary>
+            字表信息
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Options.CheckedBtn">
+            <summary>
+            额外参数字符串
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Options.ColNum">
+            <summary>
+            列大小 12,24
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.GenTableColumn">
+            <summary>
+            代码生成表字段
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.ColumnName">
+            <summary>
+            导入代码生成表列名 首字母转了小写
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.ColumnComment">
+            <summary>
+            列说明
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.ColumnType">
+            <summary>
+            数据库列类型
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.CsharpType">
+            <summary>
+            C#类型
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.CsharpField">
+            <summary>
+            C# 字段名 首字母大写
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.IsPk">
+            <summary>
+            是否主键（1是）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.IsRequired">
+            <summary>
+            是否必填（1是）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.IsIncrement">
+            <summary>
+            是否自增（1是）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.IsInsert">
+            <summary>
+            是否插入（1是）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.IsEdit">
+            <summary>
+            是否需要编辑（1是）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.IsList">
+            <summary>
+            是否显示列表（1是）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.IsQuery">
+            <summary>
+            是否查询（1是）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.IsSort">
+            <summary>
+            是否排序（1是）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.HtmlType">
+            <summary>
+            显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.QueryType">
+            <summary>
+            查询类型（等于、不等于、大于、小于、范围）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.DictType">
+            <summary>
+            字典类型
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.SortStr">
+            <summary>
+            前端排序字符串
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.CsharpFieldFl">
+            <summary>
+            C# 字段名 首字母小写，用于前端
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.GenTableColumn.DisabledStr">
+            <summary>
+            前端 只读字段
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.LoginUser">
+            <summary>
+            登录用户信息存储
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.LoginUser.RoleIds">
+            <summary>
+            角色集合
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.LoginUser.Roles">
+            <summary>
+            角色集合(数据权限过滤使用)
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.LoginUser.Permissions">
+            <summary>
+            权限集合
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysBase.BeginTime">
+            <summary>
+            搜索时间起始时间
+            </summary>
+            <summary>
+            Write：需穿一个bool值，false时insert，update等操作会忽略此列（和Computed的作用差不多，看了源码也没发现与Computed有什么不一样的地方，有了解的朋友可以赐教下哈）
+            ExplicitKey：指定此列为主键（不自动增长类型例如guid，ExplicitKey与Key地区别下面会详细讲）
+            Key：指定此列为主键（自动增长主键），可忽略，忽略后默认查找
+            [Computed]计算属性，打上此标签，对象地insert，update等操作会忽略此列
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysBase.EndTime">
+            <summary>
+            用于搜索使用
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysConfig">
+            <summary>
+            参数配置，数据实体对象
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysConfig.ConfigId">
+            <summary>
+            描述 :
+            空值 :False
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysConfig.ConfigName">
+            <summary>
+            描述 :
+            空值 :True
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysConfig.ConfigKey">
+            <summary>
+            描述 :
+            空值 :True
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysConfig.ConfigValue">
+            <summary>
+            描述 :
+            空值 :True
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysConfig.ConfigType">
+            <summary>
+            描述 :
+            空值 :True
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysDept">
+            <summary>
+            部门表
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.DeptId">
+            部门ID 
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.ParentId">
+            父部门ID 
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.Ancestors">
+            祖级列表 
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.DeptName">
+            部门名称 
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.OrderNum">
+            显示顺序 
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.Leader">
+            负责人 
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.Phone">
+            联系电话 
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.Email">
+            邮箱 
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.Status">
+            部门状态:0正常,1停用 
+        </member>
+        <member name="P:HiEMS.Model.System.SysDept.DelFlag">
+            <summary>
+            删除标志（0代表存在 2代表删除）
+            </summary>
+        </member>
+        <member name="F:HiEMS.Model.System.SysDept.children">
+            <summary>
+            子菜单
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysDictData">
+            <summary>
+            字典数据表
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysDictData.DictCode">
+            <summary>
+            字典主键
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysDictType">
+            <summary>
+            字典类型表
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysDictType.DictId">
+            <summary>
+            字典主键
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysDictType.DictName">
+            <summary>
+            字典名称
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysDictType.DictType">
+            <summary>
+            字典类型
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysDictType.Status">
+            <summary>
+            状态 0、正常 1、停用
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysDictType.Type">
+            <summary>
+            系统内置 Y是 N否
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.Id">
+            <summary>
+            描述 : 自增id
+            空值 : false  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.RealName">
+            <summary>
+            文件原名
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.FileType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.FileName">
+            <summary>
+            描述 : 存储文件名
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.FileUrl">
+            <summary>
+            描述 : 文件存储地址 eg：/uploads/20220202
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.StorePath">
+            <summary>
+            描述 : 仓库位置 eg：/uploads
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.FileSize">
+            <summary>
+            描述 : 文件大小
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.FileExt">
+            <summary>
+            描述 : 文件扩展名
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.Create_by">
+            <summary>
+            描述 : 创建人
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.Create_time">
+            <summary>
+            描述 : 上传时间
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.StoreType">
+            <summary>
+            描述 : 存储类型
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysFile.AccessUrl">
+            <summary>
+            描述 : 访问路径
+            空值 : true  
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysLogininfor">
+            <summary>
+            sys_logininfor 表
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysLogininfor.userName">
+            <summary>
+            用户账号
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysLogininfor.status">
+            <summary>
+            登录状态 0成功 1失败
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysLogininfor.ipaddr">
+            <summary>
+            登录IP地址
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysLogininfor.loginLocation">
+            <summary>
+            登录地点
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysLogininfor.browser">
+            <summary>
+            浏览器类型
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysLogininfor.os">
+            操作系统 
+        </member>
+        <member name="P:HiEMS.Model.System.SysLogininfor.msg">
+            <summary>
+            提示消息
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysLogininfor.loginTime">
+            <summary>
+            访问时间
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysMenu">
+            <summary>
+            Sys_menu表
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.MenuId">
+            <summary>
+            菜单ID
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.MenuName">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.parentId">
+            <summary>
+            父菜单ID
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.orderNum">
+            <summary>
+            显示顺序
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.path">
+            <summary>
+            路由地址
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.component">
+            <summary>
+            组件路径
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.isCache">
+            <summary>
+            是否缓存（1缓存 0不缓存）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.isFrame">
+            <summary>
+            是否外链 1、是 0、否
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.menuType">
+            <summary>
+            类型（M目录 C菜单 F按钮 L链接）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.visible">
+            <summary>
+            显示状态（0显示 1隐藏）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.status">
+            <summary>
+            菜单状态（0正常 1停用）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.perms">
+            <summary>
+            权限字符串
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.icon">
+            <summary>
+            菜单图标
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.MenuNameKey">
+            <summary>
+            菜单名key
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.children">
+            <summary>
+            子菜单
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.SubNum">
+            <summary>
+            子菜单个数
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysMenu.HasChildren">
+            <summary>
+            是否包含子节点，前端用
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysNotice">
+            <summary>
+            通知公告表，数据实体对象
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysNotice.NoticeId">
+            <summary>
+            描述 : 公告ID
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysNotice.NoticeTitle">
+            <summary>
+            描述 : 公告标题
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysNotice.NoticeType">
+            <summary>
+            描述 : 公告类型 (1通知 2公告)
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysNotice.NoticeContent">
+            <summary>
+            描述 : 公告内容
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysNotice.Status">
+            <summary>
+            描述 : 公告状态 (0正常 1关闭)
+            空值 : true  
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.title">
+            操作模块 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.businessType">
+            业务类型（0其它 1新增 2修改 3删除） 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.businessTypes">
+            业务类型数组 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.method">
+            请求方法 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.requestMethod">
+            请求方式 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.operatorType">
+            操作类别（0其它 1后台用户 2手机端用户） 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.operName">
+            操作人员 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.deptName">
+            部门名称 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.operUrl">
+            请求url 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.operIp">
+            操作地址 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.operLocation">
+            操作地点 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.operParam">
+            请求参数 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.jsonResult">
+            返回参数 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.status">
+            操作状态（0正常 1异常） 
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.errorMsg">
+            <summary>
+            错误消息
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.operTime">
+            <summary>
+            操作时间
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysOperLog.Elapsed">
+            <summary>
+            操作用时
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysPost.PostId">
+            <summary>
+            岗位Id
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysRole">
+            <summary>
+            角色表 sys_role
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.RoleId">
+            <summary>
+            角色ID
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.RoleName">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.RoleKey">
+            <summary>
+            角色权限
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.RoleSort">
+            <summary>
+            角色排序
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.Status">
+            <summary>
+            帐号状态（0正常 1停用）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.DelFlag">
+            <summary>
+            删除标志（0代表存在 2代表删除）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.DataScope">
+            <summary>
+            数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限））
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.MenuCheckStrictly">
+            <summary>
+            菜单树选择项是否关联显示
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.DeptCheckStrictly">
+            <summary>
+            部门树选择项是否关联显示
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.MenuIds">
+            <summary>
+            菜单组
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.DeptIds">
+            <summary>
+            部门组（数据权限）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysRole.UserNum">
+            <summary>
+            用户个数
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysRoleMenu">
+            <summary>
+            角色菜单
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysRolePost">
+            <summary>
+            角色部门
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysTasksLog">
+            <summary>
+            任务日志
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksLog.JobLogId">
+            <summary>
+            日志Id
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksLog.JobId">
+            <summary>
+            任务Id
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksLog.Status">
+            <summary>
+            执行状态（0正常 1失败）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksLog.Exception">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksLog.JobMessage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksLog.InvokeTarget">
+            <summary>
+            调用目标字符串
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksLog.Elapsed">
+            <summary>
+            执行用时，毫秒
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysTasksQz">
+            <summary>
+            计划任务
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.ID">
+            <summary>
+            描述 : UID 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.Name">
+            <summary>
+            描述 : 任务名称 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.JobGroup">
+            <summary>
+            描述 : 任务分组 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.Cron">
+            <summary>
+            描述 : 运行时间表达式 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.AssemblyName">
+            <summary>
+            描述 : 程序集名称 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.ClassName">
+            <summary>
+            描述 : 任务所在类 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.Remark">
+            <summary>
+            描述 : 任务描述 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.RunTimes">
+            <summary>
+            描述 : 执行次数 
+            空值 : False
+            默认 : 0
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.BeginTime">
+            <summary>
+            描述 : 开始时间 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.EndTime">
+            <summary>
+            描述 : 结束时间 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.TriggerType">
+            <summary>
+            描述 : 触发器类型（0、simple 1、cron） 
+            空值 : False
+            默认 : 1
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.IntervalSecond">
+            <summary>
+            描述 : 执行间隔时间(单位:秒) 
+            空值 : False
+            默认 : 0
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.IsStart">
+            <summary>
+            描述 : 是否启动 
+            空值 : False
+            默认 : 0
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.JobParams">
+            <summary>
+            描述 : 传入参数 
+            空值 : True
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.Create_time">
+            <summary>
+            描述 : 创建时间 
+            空值 : False
+            默认 : 
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.LastRunTime">
+            <summary>
+            最后运行时间
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.ApiUrl">
+            <summary>
+            api执行地址
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysTasksQz.TaskType">
+            <summary>
+            任务类型 1程序集2网络请求
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysUser">
+            <summary>
+            用户表
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.Avatar">
+            <summary>
+            '用户类型（00系统用户）',
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.Phonenumber">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.Sex">
+            <summary>
+            用户性别（0男 1女 2未知）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.Status">
+            <summary>
+            帐号状态（0正常 1停用）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.DelFlag">
+            <summary>
+            删除标志（0代表存在 2代表删除）
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.LoginIP">
+            <summary>
+            最后登录IP
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.LoginDate">
+            <summary>
+            最后登录时间
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.DeptId">
+            <summary>
+            部门Id
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.DeptName">
+            <summary>
+            拥有角色个数
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.RoleIds">
+            <summary>
+            角色id集合
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.SysUser.PostIds">
+            <summary>
+            岗位集合
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysUserPost">
+            <summary>
+            用户岗位
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.SysUserRole">
+            <summary>
+            用户角色关联表 用户N-1 角色
+            </summary>
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.SYS_USER">
+            平台内系统用户的唯一标志
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.NORMAL">
+            正常状态 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.EXCEPTION">
+            异常状态 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.USER_DISABLE">
+            用户封禁状态 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.ROLE_DISABLE">
+            角色封禁状态 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.DEPT_NORMAL">
+            部门正常状态 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.DEPT_DISABLE">
+            部门停用状态 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.DICT_NORMAL">
+            字典正常状态 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.YES">
+            是否为系统默认（是） 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.YES_FRAME">
+            是否菜单外链（是） 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.NO_FRAME">
+            是否菜单外链（否） 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.TYPE_DIR">
+            菜单类型（目录） 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.TYPE_MENU">
+            菜单类型（菜单） 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.TYPE_BUTTON">
+            菜单类型（按钮） 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.LAYOUT">
+            Layout组件标识 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.PARENT_VIEW">
+            ParentView组件标识 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.INNER_LINK">
+            InnerLink组件标识 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.UNIQUE">
+            校验返回结果码 
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.HTTP">
+            <summary>
+            http请求
+            </summary>
+        </member>
+        <member name="F:HiEMS.Model.System.UserConstants.HTTPS">
+            <summary>
+            https请求
+            </summary>
+        </member>
+        <member name="T:HiEMS.Model.System.Vo.RouterVo">
+            <summary>
+            路由展示
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Vo.Meta.Title">
+            <summary>
+            设置该路由在侧边栏和面包屑中展示的名字
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Vo.Meta.Icon">
+            <summary>
+            设置该路由的图标，对应路径src/assets/icons/svg
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:HiEMS.Model.System.Vo.Meta.NoCache" -->
+        <member name="T:HiEMS.Model.System.Vo.TreeSelectVo">
+            <summary>
+            Treeselect树结构实体类
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Vo.TreeSelectVo.Id">
+            <summary>
+            节点Id
+            </summary>
+        </member>
+        <member name="P:HiEMS.Model.System.Vo.TreeSelectVo.Label">
+            <summary>
+            节点名称
+            </summary>
+        </member>
+    </members>
+</doc>

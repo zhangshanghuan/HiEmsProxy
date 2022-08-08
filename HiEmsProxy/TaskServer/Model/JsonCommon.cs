@@ -15,16 +15,32 @@ namespace HiEmsProxy.TaskServer.Model
 {
     public static class JsonCommon
     {
-        public static string Str_json = File.ReadAllText("D:\\1.config");
-        public static string Str_json1 = File.ReadAllText("D:\\2.config");
-       
-        public static string OldSnapshot = File.ReadAllText("D:\\1.config"); //平台加载生成的sanpshot
-        public static string NewSnapshot = File.ReadAllText("D:\\1.config");//实时的
-        public static string CalSnapshot = "";//差异值
+        public  static string CachePath = Path.Combine(GetAssemblyPath(), "CacheJson.json");
+        public static string SourceSnapshot = "";     
+        public static string CacheSnapshot = "";
         //比较两个差异值发给网关，然后把NewSnapShot覆盖OldSnapShot
 
-
         static object _obj = new object();
+
+        //将缓存队列存入本地cachejson.json文件
+        public static async void WriteCacheFile()
+        {
+          await  File.WriteAllTextAsync(CachePath, CacheSnapshot);
+        }
+
+        private static string GetAssemblyPath()
+        {
+            string _CodeBase = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+            _CodeBase = _CodeBase[8..];    // 8是file:// 的长度
+            string[] arrSection = _CodeBase.Split(new char[] { '/' });
+            string _FolderPath = "";
+            for (int i = 0; i < arrSection.Length - 1; i++)
+            {
+                _FolderPath += arrSection[i] + "/";
+            }
+            return _FolderPath;
+        }
+
         //通过路由设置json值
         public static void SetJsonStrKey(string router, string key, string value, ref string json)
         {
@@ -55,7 +71,6 @@ namespace HiEmsProxy.TaskServer.Model
                 }
             }
         }
-
         //通过路由获取json值     //BMS.AlarmInfo.alarm
         public static string GetJsonStrKey(string router, string key, string json)
         {
@@ -84,8 +99,6 @@ namespace HiEmsProxy.TaskServer.Model
                 return "";
             }
         }
-
-
         public static void SetJsonStrKey1(string router, string key, string value, ref string json)
         {
             lock (_obj)
@@ -159,11 +172,6 @@ namespace HiEmsProxy.TaskServer.Model
         {
             return joCom[item];
         }
-
-
-
-
-
         //序列化
         public static string SerializeDataContractJson<T>(T obj)
         {
