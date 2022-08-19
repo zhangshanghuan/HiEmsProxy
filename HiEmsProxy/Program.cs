@@ -1,4 +1,5 @@
 using HiEMS.WebApi.Extensions;
+using HiEmsProxy.Quartz;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -26,8 +27,8 @@ namespace HiEmsProxy
                 host.UseWindowsService();
             }
             return host.ConfigureServices((hostContext, services) =>
-            {          
-                 services.AddHostedService<Worker>();
+            {
+                services.AddHostedService<Worker>();
                 //添加一个定时任务
                 services.AddTaskSchedulers();
             });

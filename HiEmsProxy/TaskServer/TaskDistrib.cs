@@ -42,8 +42,7 @@ namespace HiEmsProxy.TaskServer
                 SelectExecute(_Task, "采集");
             }           
             DelegateLib.manual.Set();
-        }
-   
+        }  
         //插入任务
         public void Insert(Tasklib _Task)
         {
@@ -131,8 +130,8 @@ namespace HiEmsProxy.TaskServer
                         case "GetAll"://队列中插入所有任务
                             foreach (var item in _tasklibs)
                             {
-                               // _PriorityQueue.Enqueue(item, Convert.ToInt16(item.DeviceProperty.Level));
-                                _PriorityQueue.Enqueue(item, Convert.ToInt16(1));
+                                int level = item.DeviceProperty.Rank == null ? 1 : (int)item.DeviceProperty.Rank;                          
+                                _PriorityQueue.Enqueue(item, level);
                             }
                             break;
                         case "Delete"://删除所有任务
@@ -142,7 +141,7 @@ namespace HiEmsProxy.TaskServer
                             if (_tasklibs.Contains(_TaskObject)) _tasklibs.Remove(_TaskObject);
                             break;
                         case "Insert"://插入任务
-                            _ExcutePriorityQueue.Enqueue(_TaskObject, Convert.ToInt16(_TaskObject.DeviceProperty.Level));
+                            _ExcutePriorityQueue.Enqueue(_TaskObject, _TaskObject.DeviceProperty.Rank==null?1:(int)_TaskObject.DeviceProperty.Rank);
                             break;
                     }
                 }

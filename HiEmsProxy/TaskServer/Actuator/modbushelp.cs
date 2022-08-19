@@ -28,9 +28,9 @@ namespace HiEmsProxy.TaskServer.Actuator
     public class Modbushelp
     {
         baselib _baselib = new baselib();
-         //当长度大于125时
-        public  List<byte> byteSource = new List<byte>();       
-        public bool GetData(ModbusTCPLib _ModbusLib, HiemsDevicePropertyDto DeviceProperty,int count=125)
+        //当长度大于125时
+        public List<byte> byteSource = new List<byte>();
+        public bool GetData(ModbusTCPLib _ModbusLib, HiemsDevicePropertyDto DeviceProperty, int count = 125)
         {
             byteSource.Clear();
             if (DeviceProperty.Length > count &&
@@ -49,7 +49,7 @@ namespace HiEmsProxy.TaskServer.Actuator
                     if (_ModbusLib._DataByteArray != null) byteSource.AddRange(_ModbusLib._DataByteArray);
                     Thread.Sleep(10);
                 }
-                if (b!=0)
+                if (b != 0)
                 {
                     res = _ModbusLib.ReadAndWrite((ushort)DeviceProperty.SlaveId, (ushort)(startAddress + count), (ushort)b, ToEnum<FunctionEnum>(DeviceProperty.Function));
                     if (!res) return false;
@@ -59,7 +59,7 @@ namespace HiEmsProxy.TaskServer.Actuator
             }
             else
             {
-                bool res = _ModbusLib.ReadAndWrite( (ushort)DeviceProperty.SlaveId, (ushort)DeviceProperty.StartAddress, (ushort)DeviceProperty.Length, ToEnum<FunctionEnum>(DeviceProperty.Function),
+                bool res = _ModbusLib.ReadAndWrite((ushort)DeviceProperty.SlaveId, (ushort)DeviceProperty.StartAddress, (ushort)DeviceProperty.Length, ToEnum<FunctionEnum>(DeviceProperty.Function),
                     DeviceProperty.Value);
                 if (!res) return false;
                 if (_ModbusLib._DataByteArray != null) byteSource.AddRange(_ModbusLib._DataByteArray);
@@ -97,8 +97,8 @@ namespace HiEmsProxy.TaskServer.Actuator
             {
                 bool res = _ModbusLib.ReadAndWrite((ushort)DeviceProperty.SlaveId, (ushort)DeviceProperty.StartAddress, (ushort)DeviceProperty.Length, ToEnum<FunctionEnum>(DeviceProperty.Function),
                     DeviceProperty.Value);
-                if (!res) return false;             
-                if(_ModbusLib._DataByteArray!=null) byteSource.AddRange(_ModbusLib._DataByteArray);
+                if (!res) return false;
+                if (_ModbusLib._DataByteArray != null) byteSource.AddRange(_ModbusLib._DataByteArray);
                 return res;
             }
         }
@@ -138,38 +138,9 @@ namespace HiEmsProxy.TaskServer.Actuator
         }
 
 
-        public void UploadData(Tasklib _Tasklib, ResultLib _ResultLib)
-        {
-            _Tasklib.BronTime = DateTime.Now;
-            if(_ResultLib.Value!=null)  _Tasklib.ResultValue = _ResultLib.Value;
-            _Tasklib.Result = _ResultLib.Result;
-            switch (_Tasklib.TaskType)
-            {
-                case 0:
-                if(_Tasklib.Result!="NG") UploadEvent(_Tasklib);
-                    break;
-                case 1:
-                    ExecuteEvent(_Tasklib);             
-                    UploadEvent(_Tasklib);
-                    break;
-            }
-        }
-        //执行结果回调
-        private void ExecuteEvent(Tasklib _Tasklib)
-        {
-            if (DelegateLib.ExecuteDelegate!=null)
-            {
-                DelegateLib.ExecuteDelegate(_Tasklib);
-            }
-        }
-        //采集数据上传回调
-        private void UploadEvent(Tasklib _Tasklib)
-        {
-            if (DelegateLib.UploadDelegate != null)
-            {
-                DelegateLib.UploadDelegate(_Tasklib);
-            }
-        }
+            
+
+
 
         //判断刷新间隔是否符合要求
         public bool CheckRefreshInterval(ConcurrentDictionary<string, DateTime> _list, string Router, int RefreshInterval, DateTime borntime)
@@ -196,6 +167,55 @@ namespace HiEmsProxy.TaskServer.Actuator
             }
             return true;
         }
+
+        //将连续地址拼接起来一次性读取（根据功能码区分）       
+        public Dictionary<string, Dictionary<string, byte[]>> CreatTask(int AddressInterval, List<Tasklib> _SourceTask)
+        {
+            if (_SourceTask == null || _SourceTask.Count < 0) return null;
+            Dictionary<string, Dictionary<string, byte[]>> list = new Dictionary<string, Dictionary<string, byte[]>>();
+            //找出有几种数据类型通过功能码+SlaveID  (四个空调功能码一样但是slaveid不一样不能合并)         
+            var modelsGroup = _SourceTask.GroupBy(x => x.DeviceProperty.Function + x.DeviceProperty.SlaveId).ToList();
+            foreach (var item in modelsGroup)
+            {
+                IGrouping<string, Tasklib> models = item;
+                List<Tasklib> _Taskliblist = models.ToList();
+                //地址排序
+                _Taskliblist.Sort(new AddressComp());
+                Dictionary<string, byte[]> _result = ReturnContiFields( AddressInterval,_Taskliblist);
+                if (_result != null) list.Add(item.Key, _result);
+            }
+            return list;
+        }
+        //返回连续字段
+        private Dictionary<string, byte[]> ReturnContiFields(int AddressInterval, List<Tasklib> _Taskliblist)
+        {
+            Dictionary<string, byte[]> list = new Dictionary<string, byte[]>();
+            List<int> listAddress = new List<int>();
+            for (int i = 0; i < _Taskliblist.Count; i++)
+            {
+                listAddress.Add(_Taskliblist[i].DeviceProperty.StartAddress);
+            }
+            var query = listAddress.ToArray().OrderBy(p => p).Aggregate<int, List<List<int>>>(null, (m, n) =>
+            {
+                if (m == null) return new List<List<int>>() { new List<int>() { n } };
+                int cc = m.Last().Last();
+                if (n - cc > AddressInterval)
+                {
+                    m.Add(new List<int>() { n });
+                }
+                else
+                {
+                    m.Last().Add(n);
+                }
+                return m;
+            });    
+            foreach (var item in query)
+            {
+                if (item.First()!= item.Last()) list.Add(item.First() + "-" + item.Last(), null);
+            }
+            return list;         
+        }
+
         //判断是否在范围内
         public bool IsInRange(Tasklib _Tasklib, Dictionary<string, byte[]> _ListValues, out string limit)
         {

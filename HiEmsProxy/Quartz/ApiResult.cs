@@ -52,7 +52,7 @@ namespace HiEmsProxy.Quartz
         public ApiResult Success()
         {
             Code = (int)ResultCode.SUCCESS;
-            Msg = "success";
+            Msg = "OK";
             return this;
         }
 

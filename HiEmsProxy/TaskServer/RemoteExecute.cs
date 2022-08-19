@@ -10,13 +10,24 @@ namespace HiEmsProxy.TaskServer
 {
     public class RemoteExecute
     {
-        public RemoteExecute()
+        private RemoteExecute()
         {
             DelegateLib.ExecuteDelegate += ExecuteMain;
         }
+        //单例模式只初始化一次
+        private static RemoteExecute instance = null;
+        public static RemoteExecute getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new RemoteExecute();
+            }
+            return instance;
+        }
         public void ExecuteMain(Tasklib _Tasklib)
         {
-           if(_Tasklib != null) Console.WriteLine("远端执行结果:" + _Tasklib.ResultValue);
+           if(_Tasklib != null) Console.WriteLine("远端执行结果:" + _Tasklib.Value);
+
         }
     }
 }

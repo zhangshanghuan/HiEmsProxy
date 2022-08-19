@@ -1,11 +1,11 @@
-﻿
-using HiEmsProxy.TaskServer.Model;
+﻿using HiEmsProxy.TaskServer.Model;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Threading;
+using Microsoft.AspNetCore.Http;
 
 namespace HiEmsProxy.TaskServer.Base
 { 
@@ -36,40 +36,50 @@ namespace HiEmsProxy.TaskServer.Base
         }
     }
 
-
     public class SignalClien
     {
         AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
         IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
         BaseConfig _BaseConfig = null;
-        public SignalClien()
+        IHttpContextAccessor _httpContextAccessor=new HttpContextAccessor();
+        public HubConnectionBuilder _connection;
+        private HubConnection _HubConnection;
+        public static string URL = "http://172.18.8.178:8888/dataHub";
+        private SignalClien()
         {
             DelegateLib.SignalDevConDelegate += DevConnectDelegate;
             _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();
         }
-        public HubConnectionBuilder _connection;
-        private HubConnection _HubConnection;
-        public static string URL="http://172.18.8.178:8888/dataHub";         
- 
+        //单例模式
+        private static SignalClien instance = null;
+        public static SignalClien getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new SignalClien();
+            }
+            return instance;
+        }
+     
         public async Task<bool>   Connect()
         {
             URL = _BaseConfig!=null? _BaseConfig.SignalRUrl: URL;
              _connection = new HubConnectionBuilder();           
             _connection.WithUrl(URL);
             //自定义重连规则实现           
-            _connection.WithAutomaticReconnect(new RetryPolicy());           
+            _connection.WithAutomaticReconnect(new RetryPolicy());
              _HubConnection =  _connection.Build();           
             _HubConnection.On<string>("GetMessage", (msg) => GetMessage(msg));
             _HubConnection.On<string>("GetDeviceProp", (msg) => GetDeviceProp(msg));
             _HubConnection.On<string>("GetRemote", (msg) => GetRemote(msg));
             _HubConnection.On<string>("GetAdmin", (msg) => GetAdmin(msg));
             try
-            {
+            {               
                 _HubConnection.Closed += _HubConnection_Closed;
-                //_HubConnection.Reconnected += _HubConnection_Reconnected;
+                //_HubConnection.Reconnected += _HubConnection_Reconnected;            
                 await _HubConnection.StartAsync();
                 if (_HubConnection.State==HubConnectionState.Connected)
-                {
+                {                                
                     return true;
                 }
             }
@@ -79,13 +89,10 @@ namespace HiEmsProxy.TaskServer.Base
             }
             return false;
         }
-
-        //初始化信息交互
+         //初始化信息交互
         public async Task<bool> InitMain()
         {             
-            _AutoResetEvent.Reset();
-            await SetInit();
-           return _AutoResetEvent.WaitOne(10000);
+           return await SetInit();        
         }
 
         //断开连接
@@ -120,8 +127,7 @@ namespace HiEmsProxy.TaskServer.Base
         #region 接收
         public void GetMessage(string  msg)
         {
-            Console.WriteLine("From {GetMessage} server:" + msg);
-            _AutoResetEvent.Set();
+            Console.WriteLine("From {GetMessage} server:" + msg);       
         }
         public void GetDeviceProp(string msg)
         {
@@ -146,27 +152,38 @@ namespace HiEmsProxy.TaskServer.Base
         #endregion
 
         #region 发送
-        public async Task SetInit()
+        public async Task<bool> SetInit()
         {
-            DataCollectUser _DataCollectUser = new DataCollectUser()
+            try
             {
-                ConnnectionId = _HubConnection.ConnectionId,
-                Name = _BaseConfig.Name,
-                LoginTime = DateTime.Now,
-                LocalIP = _BaseConfig.LocalIp,
-                LocalId =Convert.ToInt16(_BaseConfig.LocalId),   //采集执行ID
-                Location = _BaseConfig.Location
-            };
-            string data = JsonConvert.SerializeObject(_DataCollectUser);
-            Console.WriteLine("SignalClient Connect Success！！！");
-            await SendMsgToServer("SetInit", _HubConnection.ConnectionId, data);
+                DataCollectUser _DataCollectUser = new DataCollectUser()
+                {
+                    ConnectionId = _HubConnection.ConnectionId,
+                    Name = _BaseConfig.Name,
+                    LoginTime = DateTime.Now,
+                    LocalIP = _BaseConfig.LocalIp,
+                    LocalId = Convert.ToInt16(_BaseConfig.LocalId),   //采集执行ID
+                    Location = _BaseConfig.Location,
+                    UserType = _BaseConfig.UserType,
+                };
+                string data = JsonConvert.SerializeObject(_DataCollectUser);
+                Console.WriteLine("SignalClient Connect Success！！！");
+                await SendMsgToServer("SetInit", _HubConnection.ConnectionId, data);
+             
+                return true;
+            }
+            catch (Exception)
+            {
+
+            }
+            return false;
         }
 
-        public async Task<bool> SetDeviceData(string data)
+        public  bool SetDeviceData(string data)
         {
-            if (_HubConnection!=null)
+            if (ConnectState())
             {
-                return SendMsgToServer("SetDeviceData", _HubConnection.ConnectionId, data).Wait(5000);
+                return  SendMsgToServer("SetDeviceData", _HubConnection.ConnectionId, data).Wait(5000);
             }
             return false;
         }
@@ -180,7 +197,7 @@ namespace HiEmsProxy.TaskServer.Base
         #region 设备连接状态
         private void DevConnectDelegate(string StateStr)
         {
-          
+            Console.WriteLine(StateStr);
         }
         #endregion
 

@@ -16,5 +16,7 @@ namespace HiEmsProxy
         public string LocalId { get; set; } //采集器iD
         public string Location { get; set; } //采集器Location
         public string Name { get; set; } //采集器Name
+        public string UserType { get; set; }  //用户类型   COLLECT   SHOW   
+        public string UserId { get; set; } //用户id
     }
 }

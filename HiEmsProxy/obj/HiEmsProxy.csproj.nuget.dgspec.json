@@ -94,6 +94,10 @@
               "target": "Package",
               "version": "[1.4.1, )"
             },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
             "SqlSugarCore": {
               "target": "Package",
               "version": "[5.0.9.6, )"

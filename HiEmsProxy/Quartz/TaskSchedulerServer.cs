@@ -16,13 +16,13 @@ namespace HiEmsProxy.Quartz
     public class TaskSchedulerServer : ITaskSchedulerServer
     {
         private Task<IScheduler> _scheduler;
-        private readonly IJobFactory  _jobFactory;
+        private readonly IJobFactory _jobFactory;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public TaskSchedulerServer(IJobFactory jobFactory)
         {
             _scheduler = GetTaskSchedulerAsync();
-           //_jobFactory = jobFactory;
+            //_jobFactory = jobFactory;
         }
         /// <summary>
         /// 开启计划任务
@@ -59,7 +59,7 @@ namespace HiEmsProxy.Quartz
         {
             try
             {
-               if(_jobFactory!=null) _scheduler.Result.JobFactory = _jobFactory;
+                if (_jobFactory != null) _scheduler.Result.JobFactory = _jobFactory;
                 if (_scheduler.Result.IsStarted)
                 {
                     return ApiResult.Error(500, $"计划任务已经开启");
@@ -103,24 +103,24 @@ namespace HiEmsProxy.Quartz
         {
             try
             {
-                //JobKey jobKey = new JobKey(tasksQz.ID, tasksQz.JobGroup);
-                //if (await _scheduler.Result.CheckExists(jobKey))
-                //{
-                //    return ApiResult.Error(500, $"该计划任务已经在执行:【{tasksQz.Name}】,请勿重复添加！");
-                //}
-                //if (tasksQz?.EndTime <= DateTime.Now)
-                //{
-                //    return ApiResult.Error(500, $"结束时间小于当前时间计划将不会被执行");
-                //}
-                //#region 设置开始时间和结束时间
+                JobKey jobKey = new JobKey(tasksQz.ID, tasksQz.JobGroup);
+                if (await _scheduler.Result.CheckExists(jobKey))
+                {
+                    return ApiResult.Error(500, $"该计划任务已经在执行:【{tasksQz.Name}】,请勿重复添加！");
+                }
+                if (tasksQz?.EndTime <= DateTime.Now)
+                {
+                    return ApiResult.Error(500, $"结束时间小于当前时间计划将不会被执行");
+                }
+                #region 设置开始时间和结束时间
 
-                //tasksQz.BeginTime = tasksQz.BeginTime == null ? DateTime.Now : tasksQz.BeginTime;
-                //tasksQz.EndTime = tasksQz.EndTime == null ? DateTime.MaxValue.AddDays(-1) : tasksQz.EndTime;
+                tasksQz.BeginTime = tasksQz.BeginTime == null ? DateTime.Now : tasksQz.BeginTime;
+                tasksQz.EndTime = tasksQz.EndTime == null ? DateTime.MaxValue.AddDays(-1) : tasksQz.EndTime;
 
-                //DateTimeOffset starRunTime = DateBuilder.NextGivenSecondDate(tasksQz.BeginTime, 1);//设置开始时间
-                //DateTimeOffset endRunTime = DateBuilder.NextGivenSecondDate(tasksQz.EndTime, 1);//设置暂停时间
+                DateTimeOffset starRunTime = DateBuilder.NextGivenSecondDate(tasksQz.BeginTime, 1);//设置开始时间
+                DateTimeOffset endRunTime = DateBuilder.NextGivenSecondDate(tasksQz.EndTime, 1);//设置暂停时间
 
-                //#endregion
+                #endregion
 
                 #region 通过反射获取程序集类型和类   
                 Assembly assembly = Assembly.Load(new AssemblyName(tasksQz.AssemblyName));
@@ -142,12 +142,64 @@ namespace HiEmsProxy.Quartz
                 {
                     trigger = CreateCronTrigger(tasksQz);
                     //解决Quartz启动后第一次会立即执行问题解决办法
-                   ((CronTriggerImpl)trigger).MisfireInstruction = MisfireInstruction.CronTrigger.DoNothing;                 
+                    ((CronTriggerImpl)trigger).MisfireInstruction = MisfireInstruction.CronTrigger.DoNothing;
                 }
                 else
                 {
                     trigger = CreateSimpleTrigger(tasksQz);
-                    ((SimpleTriggerImpl)trigger).MisfireInstruction = MisfireInstruction.CronTrigger.DoNothing;                   
+                    ((SimpleTriggerImpl)trigger).MisfireInstruction = MisfireInstruction.CronTrigger.DoNothing;
+                }
+                // 5、将触发器和任务器绑定到调度器中
+                await _scheduler.Result.ScheduleJob(job, trigger);
+
+                //按新的trigger重新设置job执行
+                await _scheduler.Result.ResumeTrigger(trigger.Key);
+                return ApiResult.Success($"启动计划任务:【{tasksQz.Name}】成功！");
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, $"启动计划任务失败，分组：{tasksQz.JobGroup},作业：【{tasksQz.Name}】,error：{ex.Message}");
+                return ApiResult.Error(500, $"启动计划任务:【{tasksQz.Name}】失败！");
+            }
+        }
+        // JobBuilder job = JobBuilder.Create<TestJob>();
+        public async Task<ApiResult> AddTaskScheduleAsync(JobBuilder _JobBuilder, SysTasksQz tasksQz)
+        {
+            try
+            {
+                JobKey jobKey = new JobKey(tasksQz.ID, tasksQz.JobGroup);
+                if (await _scheduler.Result.CheckExists(jobKey))
+                {
+                    return ApiResult.Error(500, $"该计划任务已经在执行:【{tasksQz.Name}】,请勿重复添加！");
+                }
+                if (tasksQz?.EndTime <= DateTime.Now)
+                {
+                    return ApiResult.Error(500, $"结束时间小于当前时间计划将不会被执行");
+                }
+                #region 设置开始时间和结束时间
+                tasksQz.BeginTime = tasksQz.BeginTime == null ? DateTime.Now : tasksQz.BeginTime;
+                tasksQz.EndTime = tasksQz.EndTime == null ? DateTime.MaxValue.AddDays(-1) : tasksQz.EndTime;
+                DateTimeOffset starRunTime = DateBuilder.NextGivenSecondDate(tasksQz.BeginTime, 1);//设置开始时间
+                DateTimeOffset endRunTime = DateBuilder.NextGivenSecondDate(tasksQz.EndTime, 1);//设置暂停时间
+                #endregion
+                //2、开启调度器。判断任务调度是否开启
+                if (!_scheduler.Result.IsStarted)
+                {
+                    await StartTaskScheduleAsync();
+                }
+                IJobDetail job = _JobBuilder.WithIdentity(tasksQz.ID, tasksQz.JobGroup).Build();
+                ITrigger trigger;
+                //4、创建一个触发器
+                if (tasksQz.Cron != null && CronExpression.IsValidExpression(tasksQz.Cron))
+                {
+                    trigger = CreateCronTrigger(tasksQz);
+                    //解决Quartz启动后第一次会立即执行问题解决办法
+                    ((CronTriggerImpl)trigger).MisfireInstruction = MisfireInstruction.CronTrigger.DoNothing;
+                }
+                else
+                {
+                    trigger = CreateSimpleTrigger(tasksQz);
+                    ((SimpleTriggerImpl)trigger).MisfireInstruction = MisfireInstruction.CronTrigger.DoNothing;
                 }
                 // 5、将触发器和任务器绑定到调度器中
                 await _scheduler.Result.ScheduleJob(job, trigger);
@@ -163,6 +215,7 @@ namespace HiEmsProxy.Quartz
             }
         }
 
+
         /// <summary>
         /// 暂停指定的计划任务
         /// </summary>
@@ -172,6 +225,11 @@ namespace HiEmsProxy.Quartz
         {
             try
             {
+              //var dd=    await _scheduler.Result.GetJobKeys(GroupMatcher<JobKey>.GroupEquals(""));
+              //  foreach (JobKey item in dd)
+              //  {
+
+              //  }
                 JobKey jobKey = new JobKey(tasksQz.ID, tasksQz.JobGroup);
                 if (await _scheduler.Result.CheckExists(jobKey))
                 {
@@ -201,7 +259,7 @@ namespace HiEmsProxy.Quartz
                 {
                     return ApiResult.Error(500, $"未找到计划任务:【{tasksQz.Name}】");
                 }
-                   await _scheduler.Result.ResumeJob(jobKey);
+                await _scheduler.Result.ResumeJob(jobKey);
                 return ApiResult.Success($"恢复计划任务:【{tasksQz.Name}】成功");
             }
             catch (Exception)
@@ -284,7 +342,7 @@ namespace HiEmsProxy.Quartz
                 return ApiResult.Error($"修改计划失败，error={ex.Message}");
             }
         }
-    
+
         #region 创建触发器帮助方法
 
         /// <summary>
@@ -300,18 +358,18 @@ namespace HiEmsProxy.Quartz
                 .WithIdentity(tasksQz.ID, tasksQz.JobGroup)
                 .StartAt(tasksQz.BeginTime.Value)
                 .EndAt(tasksQz.EndTime.Value)
-                .WithSimpleSchedule(x => x.WithIntervalInSeconds(tasksQz.IntervalSecond)          
-                .WithRepeatCount(tasksQz.RunTimes).WithMisfireHandlingInstructionNowWithRemainingCount()).ForJob(tasksQz.ID, tasksQz.JobGroup).Build();               
+                .WithSimpleSchedule(x => x.WithIntervalInSeconds(tasksQz.IntervalSecond)
+                .WithRepeatCount(tasksQz.RunTimes).WithMisfireHandlingInstructionNowWithRemainingCount()).ForJob(tasksQz.ID, tasksQz.JobGroup).Build();
                 return trigger;
             }
             else
             {
                 ITrigger trigger = TriggerBuilder.Create()
                 .WithIdentity(tasksQz.ID, tasksQz.JobGroup)
-                //  .StartAt(tasksQz.BeginTime.Value)
-                // .EndAt(tasksQz.EndTime.Value)
+                 .StartAt(tasksQz.BeginTime.Value)
+                .EndAt(tasksQz.EndTime.Value)
                 .WithSimpleSchedule(x => x.WithIntervalInSeconds(tasksQz.IntervalSecond)
-                .RepeatForever().WithMisfireHandlingInstructionNowWithRemainingCount()).ForJob(tasksQz.ID, tasksQz.JobGroup).Build();                
+                .RepeatForever().WithMisfireHandlingInstructionNowWithRemainingCount()).ForJob(tasksQz.ID, tasksQz.JobGroup).Build();
                 return trigger;
             }
         }
@@ -328,46 +386,10 @@ namespace HiEmsProxy.Quartz
                    .WithIdentity(tasksQz.ID, tasksQz.JobGroup)
                    .StartAt(tasksQz.BeginTime.Value)//开始时间
                    .EndAt(tasksQz.EndTime.Value)//结束数据
-                   .WithCronSchedule( tasksQz.Cron,x=>x.WithMisfireHandlingInstructionFireAndProceed())//指定cron表达式                 
+                   .WithCronSchedule(tasksQz.Cron, x => x.WithMisfireHandlingInstructionFireAndProceed())//指定cron表达式                 
                    .ForJob(tasksQz.ID, tasksQz.JobGroup)//作业名称                
                    .Build();
         }
         #endregion
-    }
-
-   
-
-    /// <summary>
-    /// 任务
-    /// </summary>
-    public class SimpleJob : IJob
-    {
-        public async static Task Run()
-        {
-            // 1.创建scheduler的引用
-            ISchedulerFactory schedFact = new StdSchedulerFactory();
-            IScheduler sched = await schedFact.GetScheduler();
-
-            //2.启动 scheduler
-            await sched.Start();
-
-            // 3.创建 job
-            IJobDetail job = JobBuilder.Create<SimpleJob>()
-                    .WithIdentity("job1", "group1")
-                    .Build();
-
-            // 4.创建 trigger
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("trigger1", "group1")
-                .WithSimpleSchedule(x => x.WithIntervalInSeconds(5).RepeatForever())
-                .Build();
-
-            // 5.使用trigger规划执行任务job
-            await sched.ScheduleJob(job, trigger);
-        }
-        public virtual Task Execute(IJobExecutionContext context)
-        {
-            return Console.Out.WriteLineAsync($"job工作了 在{DateTime.Now}");
-        }
     }
 }

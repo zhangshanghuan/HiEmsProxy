@@ -19,6 +19,7 @@
           "NLog": "5.0.1",
           "Newtonsoft.Json": "13.0.1",
           "ObjectsComparer": "1.4.1",
+          "Quartz": "3.4.0",
           "SerialLib": "1.0.0",
           "SqlSugarCore": "5.0.9.6",
           "System.IO.Ports": "6.0.0",

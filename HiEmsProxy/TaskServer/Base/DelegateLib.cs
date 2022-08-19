@@ -21,9 +21,19 @@ namespace HiEmsProxy.TaskServer.Base
 
         //执行结果回调
         public static Action<Tasklib> ExecuteDelegate;
-        
-        
+
+        //策略触发事件
+        public static Action<string> StrategyTriggerDelegate;
+        //策略执行结果
+        public static Action<Tasklib> StrategyDelegate;
+        //策略执行
+        public static Action<Tasklib> StrategyExecuteDelegate;
+
+
+        //设备属性json
         public static Action<string> SignalDevicePropDelegate;
+      
+        //远端执行设备属性json
         public static Action<string> SignalRemoteDelegate;
 
         //设备连接委托

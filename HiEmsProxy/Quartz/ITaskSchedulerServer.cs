@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Quartz;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace HiEmsProxy.Quartz
 		Task<ApiResult> StopTaskScheduleAsync();
 
 		Task<ApiResult> AddTaskScheduleAsync(SysTasksQz tasksQz);
-
+		Task<ApiResult> AddTaskScheduleAsync(JobBuilder _JobBuilder,SysTasksQz tasksQz);
 		Task<ApiResult> PauseTaskScheduleAsync(SysTasksQz tasksQz);
 
 		Task<ApiResult> ResumeTaskScheduleAsync(SysTasksQz tasksQz);

@@ -16,7 +16,7 @@ namespace HiEmsProxy.TaskServer.Actuator
 {
     public class ModbusTcpExecute:ActInterface
     {
-        common _common = new common();
+        Common _common = new Common();
         baselib _baselib = new baselib();
         public ConcurrentDictionary<string, DateTime> _list = new();   
         public ModbusTCPLib _ModbusLib=new ModbusTCPLib();
@@ -28,7 +28,7 @@ namespace HiEmsProxy.TaskServer.Actuator
         //采集集合
         public List<Tasklib> _TaskList { get; set; } = new List<Tasklib>();
         public BlockingCollection<Tasklib> _BlockingCollection { get; set; } = new BlockingCollection<Tasklib>(1000);
-        public int ID;
+        public int ID;  
         public ModbusTcpExecute(string ip, int port, int iD)
         {
             ID = iD;
@@ -41,19 +41,18 @@ namespace HiEmsProxy.TaskServer.Actuator
             {
                 _common.DeviceConState(ID, "连接失败");
             }
-            _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();
-        
+            _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();        
         }
         //开始任务
         public void Main()
         {
-            Task.Factory.StartNew(() =>
+            _ = Task.Factory.StartNew(() =>
             {
                 while (true)
                 {
                     DelegateLib.manual.WaitOne();
-                    //预读取数据
-                    Dictionary<string, Dictionary<string, byte[]>> _Addresslist = CreatNewTask(_TaskList);                  
+                    //地址拼接集合                     
+                    Dictionary<string, Dictionary<string, byte[]>> _Addresslist = _modbushelp.CreatTask(_BaseConfig.AddressInterval, _TaskList);                 
                     Thread.Sleep(100);
                     //先批量读取
                     for (int i = 0; i < _TaskList.Count; i++)
@@ -70,32 +69,48 @@ namespace HiEmsProxy.TaskServer.Actuator
                         else
                         {
                             if (_TaskList.Count > i) _Tasklib = _TaskList[i];
+                            string key = _Tasklib.DeviceProperty.Function + _Tasklib.DeviceProperty.SlaveId;
                             // 判断是否在刷新间隔内
-                              bool res = _modbushelp.CheckRefreshInterval(_list, _Tasklib.Router, (int)_Tasklib.DeviceProperty.Refresh, DateTime.Now); if (!res) continue;
-                            //判断任务地址是否在已读取的地址列表中
-                            Dictionary<string, byte[]> _ListValues = null;
-                            if (_Addresslist != null && _Addresslist.ContainsKey(_Tasklib.DeviceProperty.Function + _Tasklib.DeviceProperty.SlaveId)) _ListValues = _Addresslist[_Tasklib.DeviceProperty.Function + _Tasklib.DeviceProperty.SlaveId];
-                            string limit;
-                             res =_modbushelp.IsInRange(_Tasklib, _ListValues, out limit);
-                            if (res)
+                            bool res = _modbushelp.CheckRefreshInterval(_list, _Tasklib.Router, (int)_Tasklib.DeviceProperty.Refresh, DateTime.Now); if (!res) continue;
+                            //判断任务地址是否在已读取的地址列表中                          
+                            if (_Addresslist != null && _Addresslist.ContainsKey(key))
                             {
-                                _ResultLib =_modbushelp.GetResultData(_ListValues, limit, _Tasklib);                                                      
-                            }
-                            else
-                            {                            
-                                _ResultLib = Read(_Tasklib.DeviceProperty);
+                                Dictionary<string, byte[]> limits = _Addresslist[key];
+                                //判断存在范围
+                                string limit;
+                                if (_modbushelp.IsInRange(_Tasklib, limits, out limit))
+                                {
+                                    //读取值                               
+                                    int startadd = Convert.ToInt32(limit.Split('-')[0]);
+                                    int end = Convert.ToInt32(limit.Split('-')[1]);
+                                    int length = end - startadd + 1 * (int)_Tasklib.DeviceProperty.Length;                                
+                                    if (limits[limit] == null) limits[limit] = GetValue((int)_Tasklib.DeviceProperty.SlaveId, _modbushelp.ToEnum<FunctionEnum>(_Tasklib.DeviceProperty.Function), startadd, length);
+                                    if (limits[limit] != null)
+                                    {
+                                        _ResultLib = _modbushelp.GetResultData(limits, limit, _Tasklib);
+                                    }
+                                    else
+                                    {
+                                        _ResultLib = Read(_Tasklib.DeviceProperty);
+                                    }
+                                }
+                                else
+                                {
+                                    _ResultLib = Read(_Tasklib.DeviceProperty);
+                                }
                             }
                             _list.TryAdd(_Tasklib.Router, DateTime.Now);
                         }
                         //数据上传
                         if (_ResultLib != null && _Tasklib != null)
                         {
-                            _modbushelp.UploadData(_Tasklib, _ResultLib);
+                            _common.UploadData(_Tasklib, _ResultLib);
                         }
                     }
                 }
             });
         }
+   
         //读取和写入方法
         private ResultLib Read(HiemsDevicePropertyDto DeviceProperty, bool IsDataConversion = true)
         {
@@ -128,69 +143,9 @@ namespace HiEmsProxy.TaskServer.Actuator
             }
             return _ResultLib;
         }
-
-        //将连续地址拼接起来一次性读取（根据功能码区分）    
-        private  int interval =10;
-        public Dictionary<string, Dictionary<string, byte[]>> CreatNewTask(List<Tasklib> _SourceTask)
-        {
-            List<string> _asddress = new List<string>();
-            Dictionary<string, Dictionary<string, byte[]>> list = new Dictionary<string, Dictionary<string, byte[]>>();
-            //找出有几种数据类型通过功能码+SlaveID  (四个空调功能码一样但是slaveid不一样不能合并)         
-            var modelsGroup = _SourceTask.GroupBy(x => x.DeviceProperty.Function + x.DeviceProperty.SlaveId).ToList();
-            foreach (var item in modelsGroup)
-            {
-                IGrouping<string, Tasklib> models = item;
-                List<Tasklib> _Taskliblist = models.ToList();
-                //地址排序
-                _Taskliblist.Sort(new AddressComp());
-                foreach (var address in _Taskliblist)
-                {
-                    _asddress.Add(address.DeviceProperty.StartAddr);
-                }
-                Dictionary<string, byte[]> _result = ReturnContiFields(_Taskliblist);
-                if (_result != null) list.Add(item.Key, _result);
-            }
-            return list;
-        }
-        //返回连续字段
-        private Dictionary<string, byte[]> ReturnContiFields(List<Tasklib> _Taskliblist)
-        {
-            if (_Taskliblist.Count == 0) return null;
-            Dictionary<string, byte[]> _listDeviceData = new Dictionary<string, byte[]>();
-            int start = _Taskliblist[0].DeviceProperty.StartAddress;
-            int value = _Taskliblist[0].DeviceProperty.StartAddress;
-            int address = 0;
-            int length = 1;
-            int SlaveID = (int)_Taskliblist[0].DeviceProperty.SlaveId;
-            byte[] result = null;
-            FunctionEnum Function = _modbushelp.ToEnum<FunctionEnum>(_Taskliblist[0].DeviceProperty.Function);
-            for (int i = 0; i < _Taskliblist.Count; i++)
-            {
-                address = _Taskliblist[i].DeviceProperty.StartAddress;
-                length = (int)_Taskliblist[i].DeviceProperty.Length;
-                interval = _BaseConfig != null ? _BaseConfig.AddressInterval : interval;
-                if (address - value > interval)
-                {
-                    result = GetValue(SlaveID, Function, start, value - start + 1 * (int)_Taskliblist[i - 1].DeviceProperty.Length);
-                    if (result != null) _listDeviceData.Add($"{start}-{value + 1 * _Taskliblist[i - 1].DeviceProperty.Length - 1}", result);
-                    value = address;
-                    start = address;
-                }
-                else
-                {
-                    value = address;
-                }
-            }
-            if ((address - start + 1) != 1)
-            {
-                result = GetValue(SlaveID, Function, start, address - start + 1 * length);
-                if (result != null) _listDeviceData.Add($"{start}-{address + 1 * length - 1}", result);
-            }
-            return _listDeviceData;
-        }
+  
         private byte[] GetValue(int SlaveID, FunctionEnum Function, int StartAddress, int length)
-        {
-            string limits = $"{StartAddress}-{StartAddress + length - 1}";          
+        {              
             ResultLib _ResultLib = Read(new HiemsDevicePropertyDto()
             {
                 SlaveId = SlaveID,

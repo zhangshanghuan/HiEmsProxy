@@ -18,7 +18,7 @@ namespace HiEmsProxy.TaskServer.Actuator
 {
     public class SerialExecute: ActInterface
     {
-        common _common = new common();
+        Common _common = new Common();
         public ConcurrentDictionary<string, DateTime> _list = new();
         public SerialLib _SerialLib=new SerialLib();
         readonly Modbushelp _modbushelp = new();
@@ -69,7 +69,7 @@ namespace HiEmsProxy.TaskServer.Actuator
                         }
                         if (_ResultLib != null && _Tasklib != null)
                         {
-                            _modbushelp.UploadData(_Tasklib, _ResultLib);
+                            _common.UploadData(_Tasklib, _ResultLib);
                         }
                     }
                 }

@@ -11,7 +11,6 @@ namespace HiEmsProxy.TaskServer.Model
         public static List<ModbusTcpExecute> _ListTcpModbusLib = new List<ModbusTcpExecute>();
         public static List<ModbusRtuExecute> _ListRtuModbusLib = new List<ModbusRtuExecute>();
         public static List<SerialExecute> _ListSerialLib = new List<SerialExecute>();
-
         //定义一个串口通讯集合     
         public static SerialExecute CreatSerial(string COM, int BaudRate, int DataBits, Parity Parity, StopBits StopBits,int ID)
         {          

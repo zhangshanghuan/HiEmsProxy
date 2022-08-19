@@ -1,4 +1,5 @@
-﻿using Quartz;
+﻿using HiEmsProxy.TaskServer;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,11 @@ namespace HiEmsProxy
 {
     [DisallowConcurrentExecution]
     public class TestJob : IJob
-    {
+    {        
         public virtual Task Execute(IJobExecutionContext context)
         {
-            return Console.Out.WriteLineAsync($"job工作了 在{DateTime.Now}");
+            StrategyExecute _StrategyExecute= StrategyExecute.GetInstance();
+            return Console.Out.WriteLineAsync($"Test job工作了 在{DateTime.Now}");
         }
     }
 }

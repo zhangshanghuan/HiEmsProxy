@@ -8,7 +8,7 @@ using HiEMS.Model.Dto;
 namespace HiEMS.Model.Business.Vo
 {
     /// <summary>
-    /// 数据采集结构实体类
+    /// 数据采集实体类
     /// </summary>
     public class DataCollectHubVo
     {
@@ -37,8 +37,11 @@ namespace HiEMS.Model.Business.Vo
         /// </summary>
         public string Label { get; set; }
 
+        /// <summary>
+        /// 设备类型
+        /// </summary>
+        public HiemsDeviceType Type { get; set; }
 
-  
         /// <summary>
         /// 设备协议
         /// </summary>
@@ -52,7 +55,7 @@ namespace HiEMS.Model.Business.Vo
         /// <summary>
         /// 设备数据
         /// </summary>
-        public List<HiemsDeviceDataDto> Data { get; set; }
- 
+        public List<HiemsDeviceDataDtoForHub> Data { get; set; }
+     
     }
 }

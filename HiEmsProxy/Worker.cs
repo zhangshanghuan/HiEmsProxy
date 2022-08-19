@@ -12,6 +12,7 @@ using System;
 using HiEmsProxy.Quartz;
 using Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using Quartz;
 
 namespace HiEmsProxy
 {
@@ -25,7 +26,6 @@ namespace HiEmsProxy
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-
             //IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
             //BaseConfig _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();
             //  string[] ddd = new string[] { "12", "13" };
@@ -34,30 +34,13 @@ namespace HiEmsProxy
             //   ushort dd=  Convert.ToUInt16(address);
             // EvalHelp _EvalHelp = new EvalHelp();
             //string str = _EvalHelp.EvalMian("10", "(8>2&&7>8)? true:false");
-            //string str = _EvalHelp.EvalMian("10", "raw|0x3");  //1010  0001       
+            //string str = _EvalHelp.EvalMian("10", "raw|0x3");  //1010  0001
+            //
             await Task.Run(() =>
-            {
-                var dd = Provider._ServiceProvider.GetService<ITaskSchedulerServer>();
-                SysTasksQz _SysTasksQz= new SysTasksQz()
-                {
-                    JobGroup = "1",
-                    Name = "zsh",
-                    AssemblyName = "HiEmsProxy",
-                    ClassName = "TestJob",
-                    ID = "myjob",
-                    BeginTime = DateTime.Now,
-                    EndTime = DateTime.Now,
-                    IntervalSecond = 1,
-                };
-                dd.AddTaskScheduleAsync(_SysTasksQz);
-                Thread.Sleep(5000);
-                dd.PauseTaskScheduleAsync(_SysTasksQz);
-                Console.WriteLine("暂停");
-                Thread.Sleep(8000);
-                dd.ResumeTaskScheduleAsync(_SysTasksQz);
-                Console.WriteLine("恢复");
-                //Thread.Sleep(5000);
-                //dd.UpdateTaskScheduleAsync(_SysTasksQz = new SysTasksQz()
+            {            
+                //实现任务添加
+                //var dd = Provider._ServiceProvider.GetService<ITaskSchedulerServer>();
+                //SysTasksQz _SysTasksQz = new SysTasksQz()
                 //{
                 //    JobGroup = "1",
                 //    Name = "zsh",
@@ -65,15 +48,15 @@ namespace HiEmsProxy
                 //    ClassName = "TestJob",
                 //    ID = "myjob",
                 //    BeginTime = DateTime.Now,
-                //    EndTime = DateTime.Now,
-                //    IntervalSecond = 5,
-                //});
-
-
-                //TaskSchedulerServer.Run();              
-                //HiemsMain _Common = new HiemsMain();
-                //_Common.Start();
-            });
+                //    EndTime = DateTime.Now.AddSeconds(10),
+                //    IntervalSecond = 1,
+                //};
+                //// 3.创建 job
+                //JobBuilder job = JobBuilder.Create<TestJob>();
+                //dd.AddTaskScheduleAsync(job, _SysTasksQz);
+             HiemsMain _Common = new HiemsMain();
+            _Common.Start();
+        });
         }
     }
 }
