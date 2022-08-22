@@ -7,29 +7,29 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using HiEMS.Model.Models;
 
 namespace HiEmsProxy.TaskServer.Actuator
-{
-    public class ConStateModel
-    {
-        public int ProtocolId { get; set; }  //协议id  
-        public string Description { get; set; }  //描述
-    }
+{  
     public  class Common
     {
         //各个设备的连接状态
-        public void DeviceConState(int protocolId, string description)
+        bool Currentstate=false;
+        bool IsFirst = true;
+        public void DeviceConState(int protocolId,bool state)
         {
-            if (DelegateLib.SignalDevConDelegate != null)
+            if (!IsFirst&&Currentstate == state) return;
+            if (DelegateLib.DevConDelegate != null)
             {
-                ConStateModel _ConStateModel = new ConStateModel()
+                HiemsDeviceInfo _HiemsDeviceInfo = new HiemsDeviceInfo()
                 {
                     ProtocolId = protocolId,
-                    Description = description
+                    State = state ? "0" : "1"
                 };
-                string result = JsonConvert.SerializeObject(_ConStateModel);
-                DelegateLib.SignalDevConDelegate(result);
+                DelegateLib.DevConDelegate(_HiemsDeviceInfo);
             }
+            IsFirst = false;
+            Currentstate = state;
         }
         //任务回调
         public void UploadData(Tasklib _Tasklib, ResultLib _ResultLib)

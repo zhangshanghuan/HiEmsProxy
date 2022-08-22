@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using HiEMS.Model.Models;
 using HiEmsProxy.TaskServer.Model;
 
 namespace HiEmsProxy.TaskServer.Base
@@ -37,7 +38,7 @@ namespace HiEmsProxy.TaskServer.Base
         public static Action<string> SignalRemoteDelegate;
 
         //设备连接委托
-        public static Action<string> SignalDevConDelegate;
+        public static Action<HiemsDeviceInfo> DevConDelegate;
 
 
     }

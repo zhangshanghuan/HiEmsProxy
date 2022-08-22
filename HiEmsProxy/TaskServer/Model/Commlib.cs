@@ -76,7 +76,7 @@ namespace HiEmsProxy.TaskServer.Model
         public static ModbusRtuExecute CreatModbusRtu(string COM, int BaudRate, int DataBits, Parity Parity, StopBits StopBits,int ID)
         {
             try
-            {
+            {              
                 foreach (ModbusRtuExecute item in _ListRtuModbusLib)
                 {
                     if (COM == item._ModbusLib._SerialPort.PortName)

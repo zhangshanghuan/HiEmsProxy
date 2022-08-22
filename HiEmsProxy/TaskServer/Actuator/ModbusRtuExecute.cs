@@ -25,6 +25,7 @@ namespace HiEmsProxy.TaskServer.Actuator
         public ModbusRTULib _ModbusLib = new ModbusRTULib();
         IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
         BaseConfig _BaseConfig = null;
+        bool ConState = false;
         //执行集合
         public BlockingCollection<Tasklib> _ExcuteBlockingCollection { get; set; } = new BlockingCollection<Tasklib>(1000);
         //采集集合
@@ -34,17 +35,10 @@ namespace HiEmsProxy.TaskServer.Actuator
         public ModbusRtuExecute(SerialPort _SerialPort, int iD)
         {
             ID = iD;
-            bool res = _ModbusLib.Init(_SerialPort);
-            if (res)
-            {
-                Main();
-            }
-            else 
-            {
-                _common.DeviceConState(ID,"连接失败");
-            }
-            _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();
-            
+            ConState = _ModbusLib.Init(_SerialPort);
+            if (ConState) Main();
+            _common.DeviceConState(ID, ConState);
+            _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();            
         }
         //开始任务
         public void Main()
@@ -171,15 +165,16 @@ namespace HiEmsProxy.TaskServer.Actuator
                 _ResultLib.Value = "";
                 if (_ModbusLib._RTUClient == null || !_ModbusLib._RTUClient.IsConnected)
                 {
-                    bool res = _ModbusLib.ReConnect();
-                    if (!res)
+                    ConState = _ModbusLib.ReConnect();
+                    if (!ConState)
                     {
-                        _common.DeviceConState(ID, "连接失败");
+                        _common.DeviceConState(ID, ConState);
                         _ResultLib.Result = "NG";
                         _ResultLib.Value = "";                       
                         return _ResultLib;
                     }
                 }
+                _common.DeviceConState(ID, ConState);
                 //执行方法 
                 bool result = _modbushelp.GetData(_ModbusLib, DeviceProperty, _BaseConfig != null ? _BaseConfig.ModbusMaxCount : 125);
                 _ResultLib.Result = result ? "OK" : "NG";

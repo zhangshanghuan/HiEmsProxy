@@ -17,7 +17,7 @@ namespace HiEmsProxy.TaskServer.Model
         /// <param name="source">源版本实体</param>
         /// <param name="current">当前版本实体</param>
         /// <returns>true 存在变更 false 未变更</returns>
-        protected static bool DifferenceComparison<T1, T2>(T1 source, T2 current, List<string> exclude = null)
+        public static bool DifferenceComparison<T1, T2>(T1 source, T2 current, List<string> exclude = null)
         {
             Type t1 = source.GetType();
             Type t2 = current.GetType();
@@ -27,7 +27,7 @@ namespace HiEmsProxy.TaskServer.Model
             foreach (PropertyInfo p in property1)
             {
                 string name = p.Name;
-                if (exclude.Contains(name)) { continue; }
+             //   if (exclude.Contains(name)) { continue; }
                 string value1 = p.GetValue(source, null)?.ToString();
                 string value2 = t2.GetProperty(name)?.GetValue(current, null)?.ToString();
                 if (value1 != value2)
@@ -82,7 +82,7 @@ namespace HiEmsProxy.TaskServer.Model
         /// <param name="t"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public Result ComPare<T>(T t, T s)
+        public static Result ComPare<T>(T t, T s)
         {
             Result result = new Result();
             var comparer = new ObjectsComparer.Comparer<T>();

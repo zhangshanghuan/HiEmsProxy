@@ -706,9 +706,7 @@ namespace HiEmsProxy.TaskServer.Model
                                 Gl2 = listProperty[j].Gl2,
                                 Gl3 = listProperty[j].Gl3,
                                 Gl4 = listProperty[j].Gl3,
-                            };
-                            //只获取告警的缓存
-                            if (listProperty[j].Type.ToUpper() == "ALARM") _listDataCollectHubVo[i].Data.Add(_HiemsDeviceDataDtoForHub);
+                            };                        
                         }                 
                 }
                 return _listDataCollectHubVo;

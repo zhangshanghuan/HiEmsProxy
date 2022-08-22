@@ -26,10 +26,10 @@ namespace HiEmsProxy.TaskServer
         private HiemsDeviceProtocol _DeviceProtocol;   
     
         //将任务按照通讯方式进行分发到指定的执行器             
-        public void DisToExecute(List<Tasklib> tasklibs)
+        public void DisToExecute(List<Tasklib> _tasks)
         {
             DelegateLib.manual.Reset();
-            _tasklibs = tasklibs;
+            _tasklibs = _tasks;
             //将任务插入优先级队列，进行排序
             QueueExecute("GetAll");
             //清除所有执行器中的任务队列

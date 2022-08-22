@@ -28,18 +28,13 @@ namespace HiEmsProxy.TaskServer.Actuator
         public List<Tasklib> _TaskList { get; set; } = new List<Tasklib>();
         public BlockingCollection<Tasklib> _BlockingCollection { get; set; } = new BlockingCollection<Tasklib>(1000);
         public int ID;
+        bool ConState = false;
         public SerialExecute(SerialPort _SerialPort, int iD)
         {
             ID = iD;
-            bool res = _SerialLib.Init(_SerialPort);
-            if (res)
-            {
-                Main();
-            }
-            else
-            {
-                _common.DeviceConState(ID, "连接失败");
-            }
+            ConState = _SerialLib.Init(_SerialPort);
+            if (ConState) Main();
+            _common.DeviceConState(ID, ConState);
         }
         public void Main()
         {
@@ -82,15 +77,16 @@ namespace HiEmsProxy.TaskServer.Actuator
             //判断是否连接成功
             if (_SerialLib == null || !_SerialLib.IsConnected)
             {
-                bool RES = _SerialLib.ReConnect();
-                if (!RES)
+                ConState = _SerialLib.ReConnect();
+                if (!ConState)
                 {
-                    _common.DeviceConState(ID, "连接失败");
+                    _common.DeviceConState(ID, ConState);
                     _ResultLib.Result = "NG";
                     _ResultLib.Value = "";
                     return _ResultLib;
                 }
             }
+            _common.DeviceConState(ID, ConState);
             //执行对应的方法
             return _ResultLib;
         }

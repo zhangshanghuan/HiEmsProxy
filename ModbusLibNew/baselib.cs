@@ -67,7 +67,6 @@ namespace ModbusLibNew
                         //        listString[i] = _EvalHelp.EvalMian(res, formula);
                         //    }
                         //    break;
-
                         //case DataFormatEnum.Bit:
                         //    for (int i = 0; i < _SoureData.Length; i++)
                         //    {

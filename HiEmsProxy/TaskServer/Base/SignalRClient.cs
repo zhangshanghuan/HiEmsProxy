@@ -46,8 +46,7 @@ namespace HiEmsProxy.TaskServer.Base
         private HubConnection _HubConnection;
         public static string URL = "http://172.18.8.178:8888/dataHub";
         private SignalClien()
-        {
-            DelegateLib.SignalDevConDelegate += DevConnectDelegate;
+        {         
             _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();
         }
         //单例模式
@@ -194,12 +193,7 @@ namespace HiEmsProxy.TaskServer.Base
         }
         #endregion
 
-        #region 设备连接状态
-        private void DevConnectDelegate(string StateStr)
-        {
-            Console.WriteLine(StateStr);
-        }
-        #endregion
+        
 
         //断开连接事件
         private System.Threading.Tasks.Task _HubConnection_Closed(Exception arg)

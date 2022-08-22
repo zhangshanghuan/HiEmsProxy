@@ -23,6 +23,8 @@ namespace HiEmsProxy.TaskServer.Actuator
         readonly Modbushelp _modbushelp = new();
         IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
         BaseConfig _BaseConfig = null;
+        bool ConState = false;
+
         //执行集合
         public BlockingCollection<Tasklib> _ExcuteBlockingCollection { get; set; } = new BlockingCollection<Tasklib>(1000);
         //采集集合
@@ -32,16 +34,10 @@ namespace HiEmsProxy.TaskServer.Actuator
         public ModbusTcpExecute(string ip, int port, int iD)
         {
             ID = iD;
-            bool res = _ModbusLib.Init(ip, port);
-            if (res)
-            {
-                Main();
-            }
-            else
-            {
-                _common.DeviceConState(ID, "连接失败");
-            }
-            _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();        
+            ConState = _ModbusLib.Init(ip, port);
+            if (ConState) Main();         
+            _common.DeviceConState(ID, ConState);          
+           _BaseConfig = config.GetRequiredSection("BaseConfig").Get<BaseConfig>();        
         }
         //开始任务
         public void Main()
@@ -120,15 +116,16 @@ namespace HiEmsProxy.TaskServer.Actuator
                 //判断是否连接成功
                 if (_ModbusLib._TcpClient == null || !_ModbusLib._TcpClient.IsConnected)
                 {
-                    bool RES = _ModbusLib.ReConnect();
-                    if (!RES)
+                     ConState = _ModbusLib.ReConnect();
+                    if (!ConState)
                     {
-                        _common.DeviceConState(ID, "连接失败");
+                        _common.DeviceConState(ID, ConState);
                         _ResultLib.Result = "NG";
                         _ResultLib.Value = "";
                         return _ResultLib;
                     }
                 }
+                _common.DeviceConState(ID, ConState);
                 //执行方法 
                 bool res = _modbushelp.GetData(_ModbusLib, DeviceProperty, _BaseConfig != null ? _BaseConfig.ModbusMaxCount : 125);
                 _ResultLib.Result = res ? "OK" : "NG";

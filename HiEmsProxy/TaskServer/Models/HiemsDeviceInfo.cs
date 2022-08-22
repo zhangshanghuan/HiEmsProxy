@@ -31,6 +31,7 @@ namespace HiEMS.Model.Models
         /// </summary>
         public string Status { get; set; }
 
+        public string State { get; set; }
         /// <summary>
         /// 描述 :名称 
         /// 空值 : true  
@@ -42,6 +43,8 @@ namespace HiEMS.Model.Models
         /// 空值 : true  
         /// </summary>
         public string Describe { get; set; }
+
+     
 
         /// <summary>
         /// 描述 :项目ID 

@@ -38,6 +38,11 @@ namespace HiEMS.Model.Business.Vo
         public string Label { get; set; }
 
         /// <summary>
+        /// 设备信息
+        /// </summary>
+        public HiemsDeviceInfo Info { get; set; }
+
+        /// <summary>
         /// 设备类型
         /// </summary>
         public HiemsDeviceType Type { get; set; }

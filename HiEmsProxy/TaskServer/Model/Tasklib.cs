@@ -23,8 +23,13 @@ namespace HiEmsProxy.TaskServer.Model
         public string Result { get; set; }
 
         public string  Value { get; set; }
+      
 
         public int TaskType { get; set; } //0:采集    1:执行   2:策略
+        /// <summary>
+        /// 设备信息
+        /// </summary>
+        public HiemsDeviceInfo Info { get; set; }
 
         public HiemsDeviceProtocol DeviceProtocol { get; set; }
     

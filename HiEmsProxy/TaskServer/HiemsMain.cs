@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using HiEMS.Model.Business.Vo;
 using HiEMS.Model.Dto;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace HiEmsProxy.TaskServer
 {
@@ -20,21 +22,25 @@ namespace HiEmsProxy.TaskServer
         RemoteExecute _RemoteExecute = RemoteExecute.getInstance();
         StrategyExecute _StrategyExecute = StrategyExecute.GetInstance();
         SignalClien _SignalClien = SignalClien.getInstance();
-        TaskDistrib _TaskDistrib;
-        UpLoadLib _UpLoadLib;
+        TaskDistrib _TaskDistrib  = new TaskDistrib();
+        UpLoadLib _UpLoadLib = new UpLoadLib();
         public HiemsMain()
         {
             DelegateLib.SignalDevicePropDelegate += SignalDevicePropDelegate;
             DelegateLib.SignalRemoteDelegate += SignalRemoteDelegate;
             DelegateLib.StrategyExecuteDelegate += StrategyExecuteDelegate;
+            //Task.Factory.StartNew(() => {
+            //    Thread.Sleep(10000);
+            //   string json= File.ReadAllText("D:\\1.json");
+            //    SignalRemoteDelegate(json);
+            //});
         }
     
         public async void Start()
         {
             bool res = await _SignalClien.Connect();
             if (res) res = await _SignalClien.InitMain();
-            Console.Write("SignalClien init "+(res ? "OK " : "NG ")+DateTime.Now.ToString()+"\r\n");
-            if (res) _UpLoadLib = new UpLoadLib();
+            Console.Write("SignalClien init "+(res ? "OK " : "NG ")+DateTime.Now.ToString()+"\r\n");       
         }
    
         //远端执行任务委托
@@ -47,21 +53,22 @@ namespace HiEmsProxy.TaskServer
                 if (_List!=null&& _List.Count>0) InsertTasks(_List);
             }
         }
- 
-        //采集任务委托
+
+        //采集任务委托  
         public void SignalDevicePropDelegate(string json)
         {
             Root _Root = JsonConvert.DeserializeObject<Root>(json);
             if (_Root != null && _Root.code == 200)
-            {             
+            {               
+                _UpLoadLib._UploadList = JsonConvert.DeserializeObject<Root>(json).data;
                 //将任务分解提交给任务分发器
                 List<Tasklib> tasklibs = AnalyseJsonToTask(_Root, 0);
                 if (tasklibs != null && tasklibs.Count != 0)
                 {
-                    JsonCommon.SourceSnapshot = json;
-                    _TaskDistrib = new TaskDistrib();
+                    JsonCommon.SourceSnapshot = json;                  
                     _TaskDistrib.DisToExecute(tasklibs);
                 }
+                _UpLoadLib._Timer.Enabled = true;
             }
         }
 
@@ -77,7 +84,7 @@ namespace HiEmsProxy.TaskServer
             foreach (var item in _TaskLib)
             {
                 Console.Write($"远端执行任务  {item.DeviceProperty.Describe}\r\n");
-                _TaskDistrib.Insert(item);
+                 if(_TaskDistrib!=null)  _TaskDistrib.Insert(item);
             }           
         }
         /// <summary>
@@ -91,41 +98,36 @@ namespace HiEmsProxy.TaskServer
             List<Tasklib> _List = new List<Tasklib>();
             try
             {
-                if (_Root != null && _Root.code == 200)
+                List<DataCollectHubVo> _list = _Root.data;
+                if (_list == null) return _List;
+                for (int i = 0; i < _list.Count; i++)
                 {
-                    List<DataCollectHubVo> _list = _Root.data;
-                    if (_list == null) return _List;
-                    for (int i = 0; i < _list.Count; i++)
-                    {                 
-                        List<HiemsDevicePropertyDto> _ListDeviceProperty = _list[i].Property;
-                        if (_ListDeviceProperty == null) continue;
-                        foreach (HiemsDevicePropertyDto _DevicePropertyDto in _ListDeviceProperty)
+                    List<HiemsDevicePropertyDto> _ListDeviceProperty = _list[i].Property;
+                    if (_ListDeviceProperty == null) continue;
+                    foreach (HiemsDevicePropertyDto _DevicePropertyDto in _ListDeviceProperty)
+                    {
+                        Tasklib _TaskLib = new()
                         {
-                            Tasklib _TaskLib = new()
-                            {
-                                DeviceProtocol = _list[i].Protocol,
-                                DeviceProperty = _DevicePropertyDto,
-                                Label = _list[i].Label,
-                                TaskType = tasktype,
-                                InfoId = _list[i].InfoId,
-                                DeviceId = (int)_list[i].DeviceId,
-                                LocalId = _list[i].LocalId,
-                                Router = $"{_list[i].InfoId}+{_DevicePropertyDto.Id}"
-                            };
-                            _TaskLib.DeviceProperty.StartAddress = (int)_DevicePropertyDto.StartAddr;
-                            _List.Add(_TaskLib);
-                        }
+                            DeviceProtocol = _list[i].Protocol,
+                            Info = _list[i].Info,
+                            DeviceProperty = _DevicePropertyDto,
+                            Label = _list[i].Label,
+                            TaskType = tasktype,
+                            InfoId = _list[i].InfoId,
+                            DeviceId = (int)_list[i].DeviceId,
+                            LocalId = _list[i].LocalId,
+                            Router = $"{_list[i].InfoId}+{_DevicePropertyDto.Id}"
+                        };
+                        _TaskLib.DeviceProperty.StartAddress = (int)_DevicePropertyDto.StartAddr;
+                        _List.Add(_TaskLib);
                     }
                 }
             }
             catch (Exception ex)
             {
-
             }
             return _List;
         }
-
-
 
         #region 动态库反射获取对应的方法名
         //object obj = null;

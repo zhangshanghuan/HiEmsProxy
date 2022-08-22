@@ -33,7 +33,6 @@ namespace HiEmsProxy.TaskServer
             return instance;
         }
 
-
         public void ExecuteMain(Tasklib _Tasklib)
         {
             if (_Tasklib != null) Console.WriteLine("策略远端执行结果:" + _Tasklib.Value);
@@ -43,8 +42,6 @@ namespace HiEmsProxy.TaskServer
         {            
             bool res = GetValue("bms_stack_soc", "","1",json);
         }
-
-
 
         //执行策略中的任务
         public void Excute(Tasklib tasklib)

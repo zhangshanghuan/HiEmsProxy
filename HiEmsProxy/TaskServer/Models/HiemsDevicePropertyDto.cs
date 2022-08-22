@@ -149,6 +149,10 @@ namespace HiEMS.Model.Dto
         /// 空值 : true  
         /// </summary>
         public string Attach { get; set; }
+
+        public string defaultVal { get; set; }
+        public string lowerVal { get; set; }
+        public string upperVal { get; set; }
     }
 
     /// <summary>

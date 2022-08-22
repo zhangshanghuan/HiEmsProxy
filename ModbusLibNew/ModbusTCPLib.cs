@@ -146,7 +146,7 @@ namespace ModbusLibNew
                     //转化为bool数组
                     for (int i = 0; i < strarr.Length; i++)
                     {
-                        if (strarr[i] == "0")
+                        if (strarr[i] == "False")
                         {
                             coilDatauffer[i] = false;
                         }
